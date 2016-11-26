@@ -1,14 +1,14 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    username: DataTypes.STRING
+  var Category = sequelize.define("Category", {
+    title: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
-        User.hasMany(models.Task)
+        Category.hasMany(models.Task)
       }
     }
   });
-  return User;
+  return Category;
 };

@@ -6,11 +6,19 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
+
         Task.belongsTo(models.User, {
           onDelete: "CASCADE",
           foreignKey: {
             allowNull: false
           }
+        });
+
+        Task.belongsTo(models.Category, {
+            onDelete: "CASCADE",
+            foreignKey: {
+                allowNull: false
+            }
         });
       }
     }
