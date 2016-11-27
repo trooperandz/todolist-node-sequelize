@@ -9,66 +9,67 @@
             </ul>
 
             <div class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="add-task">
-            <h3> Add New Task </h3>
-            <form method="POST" action="">
-                <div class="form-group row">
-                    <label for="task" class="col-xs-2 col-form-label">Task</label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="task" id="task" />
-                    </div>
-                </div>
+                <div role="tabpanel" class="tab-pane fade in active" id="task-list">
+                    <h3> User Task List </h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th> Action </th>
+                                    <th> User </th>
+                                    <th> Task </th>
+                                    <th> Category </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {{#each tasks}}
+                                <tr>
+                                    <td>
+                                        <a href="/completed"><i class="glyphicon glyphicon-ok"></i></a> &nbsp;
+                                        <a href="/edit"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
+                                        <a href="/remove"><i class="glyphicon glyphicon-remove"></i></a>
+                                    </td>
+                                    <td> {{dataValues.User.username}} </td>
+                                    <td> {{dataValues.task}} </td>
+                                    <td> {{dataValues.Category.title}} </td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                        </table>
+                    </div> <!-- ./table-responsive -->
+                </div> <!-- /.tab-pane -->
 
-                <div class="form-group row">
-                    <label for="user" class="col-xs-2 col-form-label">User</label>
-                    <div class="col-xs-10">
-                        <select class="form-control" name="user" id="user">
-                            <option value="">Select...</option>
-                        </select>
-                    </div>
-                </div>
+                <div role="tabpanel" class="tab-pane fade" id="add-task">
+                    <h3> Add New Task </h3>
+                    <form method="POST" action="">
+                        <div class="form-group row">
+                            <label for="task" class="col-xs-2 col-form-label">Task</label>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" name="task" id="task" />
+                            </div>
+                        </div>
 
-                <div class="form-group row">
-                    <label for="category" class="col-xs-2 col-form-label">Category</label>
-                    <div class="col-xs-10">
-                        <select class="form-control" name="category" id="category">
-                            <option value="">Select...</option>
-                        </select>
-                    </div>
-                </div>
+                        <div class="form-group row">
+                            <label for="user" class="col-xs-2 col-form-label">User</label>
+                            <div class="col-xs-10">
+                                <select class="form-control" name="user" id="user">
+                                    <option value="">Select...</option>
+                                </select>
+                            </div>
+                        </div>
 
-                <button type="button" class="btn btn-warning"> Add Task </button>
-            </form>
-            </div>
+                        <div class="form-group row">
+                            <label for="category" class="col-xs-2 col-form-label">Category</label>
+                            <div class="col-xs-10">
+                                <select class="form-control" name="category" id="category">
+                                    <option value="">Select...</option>
+                                </select>
+                            </div>
+                        </div>
 
-            <div role="tabpanel" class="tab-pane fade" id="task-list">
-            <h3> User Task List </h3>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th> User </th>
-                            <th> Task </th>
-                            <th> Category </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      {{#each tasks}}
-                        <tr>
-                            <td>
-                                <a href="/completed"><i class="glyphicon glyphicon-ok"></i></a> &nbsp;
-                                <a href="/edit"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
-                                <a href="/remove"><i class="glyphicon glyphicon-remove"></i></a>
-                            </td>
-                            <td>{{dataValues.User.username}}</td>
-                            <td>{{dataValues.task}}</td>
-                            <td>{{dataValues.Category.title}}</td>
-                        </tr>
-                      {{/each}}
-                    </tbody>
-                </table>
-            </div> <!-- /.tab-pane -->
+                        <button type="button" class="btn btn-warning"> Add Task </button>
+                    </form>
+                </div> <!-- ./tab-pane -->
             </div> <!-- /.tab-content -->
         </div>
     </div>

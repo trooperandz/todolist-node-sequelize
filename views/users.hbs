@@ -2,6 +2,45 @@
     <div class="row">
         <div class="col-xs-12">
             <h1> {{title}} </h1>
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#user-list" aria-controls="user list" role="tab" data-toggle="tab">Users</a></li>
+                <li role="presentation"><a href="#add-user" aria-controls="add user" role="tab" data-toggle="tab">Add User</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="task-list">
+                    <h3> User List </h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th> Action </th>
+                                    <th> First Name </th>
+                                    <th> Last Name </th>
+                                    <th> Email Address </th>
+                                    <th> Join Date </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {{#each users}}
+                                <tr>
+                                    <td>
+                                        <a href="/completed"><i class="glyphicon glyphicon-ok"></i></a> &nbsp;
+                                        <a href="/edit"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
+                                        <a href="/remove"><i class="glyphicon glyphicon-remove"></i></a>
+                                    </td>
+                                    <td> {{firstName}} </td>
+                                    <td> {{lastName}} </td>
+                                    <td> {{userName}} </td>
+                                    <td> {{email}} </td>
+                                    <td> {{joinDate}} </td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                        </table>
+                    </div> <!-- ./table-responsive -->
+                </div> <!-- /.tab-pane -->
             <ul> User List:
                 {{#each users}}
                 <li>Name: {{name}} </li>
