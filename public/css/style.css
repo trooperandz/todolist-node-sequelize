@@ -17,3 +17,7 @@
 table th, table td {
     text-align: center;
 }
+
+.red {
+    color: red;
+}

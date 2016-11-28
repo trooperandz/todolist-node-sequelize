@@ -9,8 +9,11 @@ router.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
 })
 
+// User routes
 router.get('/users', usersController.getUsers);
+router.post('/users/addUser', usersController.addUser);
 
+// Task routes
 router.get('/tasks', tasksController.getTasks);
 
 /*

@@ -3,13 +3,19 @@
         <div class="col-xs-12">
             <h1> {{title}} </h1>
 
+        {{#if errors}}
+          {{#each errors}}
+            <p class="red">{{this}}</p>
+          {{/each}}
+        {{/if}}
+
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#user-list" aria-controls="user list" role="tab" data-toggle="tab">Users</a></li>
                 <li role="presentation"><a href="#add-user" aria-controls="add user" role="tab" data-toggle="tab">Add User</a></li>
             </ul>
 
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane fade in active" id="task-list">
+                <div role="tabpanel" class="tab-pane fade in active" id="user-list">
                     <h3> User List </h3>
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -18,11 +24,13 @@
                                     <th> Action </th>
                                     <th> First Name </th>
                                     <th> Last Name </th>
+                                    <th> Username </th>
                                     <th> Email Address </th>
                                     <th> Join Date </th>
                                 </tr>
                             </thead>
                             <tbody>
+                            {{#if users}}
                               {{#each users}}
                                 <tr>
                                     <td>
@@ -34,19 +42,61 @@
                                     <td> {{lastName}} </td>
                                     <td> {{userName}} </td>
                                     <td> {{email}} </td>
-                                    <td> {{joinDate}} </td>
+                                    <td> {{createdAt}} </td>
                                 </tr>
                               {{/each}}
+                            {{else}}
+                                <tr>
+                                    <td colspan="6"> There is no data available </td>
+                                </tr>
+                            {{/if}}
                             </tbody>
                         </table>
                     </div> <!-- ./table-responsive -->
                 </div> <!-- /.tab-pane -->
-            <ul> User List:
-                {{#each users}}
-                <li>Name: {{name}} </li>
-                <li>Age: {{age}} </li>
-                {{/each}}
-            </ul>
+
+                <div role="tabpanel" class="tab-pane fade" id="add-user">
+                    <h3> Add New User </h3>
+                    <form method="POST" action="/users/addUser">
+                        <div class="form-group row">
+                            <label for="firstName" class="col-xs-2 col-form-label">First Name</label>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" name="firstName" id="firstName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lastName" class="col-xs-2 col-form-label">Last Name</label>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" name="lastName" id="lastName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="userName" class="col-xs-2 col-form-label">User Name</label>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" name="userName" id="userName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-xs-2 col-form-label">Email Address</label>
+                            <div class="col-xs-10">
+                                <input type="text" class="form-control" name="email" id="email" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-xs-2 col-form-label">Password</label>
+                            <div class="col-xs-10">
+                                <input type="password" class="form-control" name="password" id="password" />
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning"> Add User </button>
+                    </form>
+                </div> <!-- ./tab-pane -->
+            </div> <!-- ./tab-content -->
         </div>
     </div>
 </div>
