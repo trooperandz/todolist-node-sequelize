@@ -10,33 +10,34 @@ module.exports = {
                 {
                     model: models.User,
                     required: true,
-                    //attributes:[['title', 'task'], ['user', 'username']]
-                    //where: { id: Sequelize.col('task.UserId') }
                 },
 
                 {
                     model: models.Category,
                     required: true
                 }
-            ],
-            attributes:[['title', 'task']]//, ['User.username', 'user']]
-            //attributes:[['title', 'task'], ['username', 'user']]
+            ]
         }).then(function(tasks) {
-            console.log('tasks: ' , tasks)
-            res.render('tasks', {title: 'Tasks Page', tasks: tasks})
+            models.User.findAll().then(users => {
+                models.Category.findAll().then(categories => {
+                    console.log('tasks: ' , tasks + 'users: ' + users + ' categories: ' + categories)
+                    return res.render('tasks', {title: 'Tasks Page', tasks, users, categories})
+                })
+            })
+
+            //return res.render('tasks', {title: 'Tasks Page', tasks: tasks})
         })
-        /*
-        var tasks = [
-            {
-                task: "Replace car battery",
-                status: 1
-            },
-            {
-                task: "Get a blackboard",
-                status: 0
-            }
-        ]
-        res.render('tasks', {title: 'Tasks Page', tasks: tasks})
-    }*/
-}
+    },
+
+    addTask: function(req, res) {
+        let title = req.body.title;
+        let notes = req.body.notes;
+        let completed = 0;
+        let CategoryId = req.body.CategoryId;
+        let UserId = req.body.UserId;
+
+        models.Task.create({title, notes, completed, CategoryId, UserId}).then(task => {
+            res.redirect('/tasks');
+        })
+    }
 }
