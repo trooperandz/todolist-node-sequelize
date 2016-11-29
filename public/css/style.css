@@ -1,3 +1,20 @@
+body {
+    padding-top: 50px;
+    /*color: #ccc;*/
+}
+
+.navbar-inverse .navbar-brand {
+    color: #008cba;
+}
+
+legend {
+    border-bottom: 1px solid #464545;
+}
+
+.table thead tr th {
+    border-bottom: 2px solid #375a7f;
+}
+
 .glyphicon:hover {
     cursor: pointer;
 }

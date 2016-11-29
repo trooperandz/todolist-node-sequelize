@@ -1,97 +1,103 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>{{title}}</h1>
+            <h2>To-Do Items</h2>
 
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#task-list" aria-controls="task list" role="tab" data-toggle="tab">Tasks</a></li>
+                <li role="presentation" class="active"><a href="#task-list" aria-controls="task list" role="tab" data-toggle="tab">Pending Tasks</a></li>
                 <li role="presentation"><a href="#add-task" aria-controls="add task" role="tab" data-toggle="tab">Add Task</a></li>
             </ul>
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="task-list">
-                    <h3> User Task List </h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th> Action </th>
-                                    <th> User </th>
-                                    <th> Task </th>
-                                    <th> Notes </th>
-                                    <th> Category </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {{#if tasks}}
-                              {{#each tasks}}
-                                <tr>
-                                    <td>
-                                        <a href="/completed"><i class="glyphicon glyphicon-ok"></i></a> &nbsp;
-                                        <a href="/edit"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
-                                        <a href="/remove"><i class="glyphicon glyphicon-remove"></i></a>
-                                    </td>
-                                    <td> {{User.userName}} </td>
-                                    <td> {{title}} </td>
-                                    <td> {{notes}} </td>
-                                    <td> {{Category.title}} </td>
-                                </tr>
-                              {{/each}}
-                            {{else}}
-                                <tr>
-                                    <td colspan="4">There is no data available</td>
-                                </tr>
-                            {{/if}}
-                            </tbody>
-                        </table>
-                    </div> <!-- ./table-responsive -->
+                    <br>
+                    <div class="well">
+                        <legend> Pending Tasks </legend>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover" id="tasks-table">
+                                <thead>
+                                    <tr>
+                                        <th> Action </th>
+                                        <th> User </th>
+                                        <th> Task </th>
+                                        <th> Notes </th>
+                                        <th> Category </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {{#if tasks}}
+                                  {{#each tasks}}
+                                    <tr>
+                                        <td>
+                                            <a href="/completed"><i class="glyphicon glyphicon-ok"></i></a> &nbsp;
+                                            <a href="/edit"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
+                                            <a href="/remove"><i class="glyphicon glyphicon-remove"></i></a>
+                                        </td>
+                                        <td> {{User.userName}} </td>
+                                        <td> {{title}} </td>
+                                        <td> {{notes}} </td>
+                                        <td> {{Category.title}} </td>
+                                    </tr>
+                                  {{/each}}
+                                {{else}}
+                                    <tr>
+                                        <td colspan="4">There is no data available</td>
+                                    </tr>
+                                {{/if}}
+                                </tbody>
+                            </table>
+                        </div> <!-- ./table-responsive -->
+                    </div> <!-- ./well -->
                 </div> <!-- /.tab-pane -->
 
                 <div role="tabpanel" class="tab-pane fade" id="add-task">
-                    <h3> Add New Task </h3>
-                    <form method="POST" action="/tasks/addTask">
-                        <div class="form-group row">
-                            <label for="title" class="col-xs-2 col-form-label">Task</label>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" name="title" id="title" />
+                    <br>
+                    <div class="well">
+                        <legend> Add New Task </legend>
+                        <form method="POST" action="/tasks/addTask">
+                            <div class="form-group row">
+                                <label for="title" class="col-xs-2 col-form-label">Task</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" name="title" id="title" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="notes" class="col-xs-2 col-form-label">Notes</label>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" name="notes" id="notes" />
+                            <div class="form-group row">
+                                <label for="notes" class="col-xs-2 col-form-label">Notes</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" name="notes" id="notes" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="UserId" class="col-xs-2 col-form-label">User</label>
-                            <div class="col-xs-10">
-                                <select class="form-control" name="UserId" id="UserId">
-                                    <option value="">Select...</option>
-                                  {{#each users}}
-                                    <option value="{{id}}">{{userName}}</option>
-                                  {{/each}}
-                                </select>
+                            <div class="form-group row">
+                                <label for="UserId" class="col-xs-2 col-form-label">User</label>
+                                <div class="col-xs-10">
+                                    <select class="form-control" name="UserId" id="UserId">
+                                        <option value="">Select...</option>
+                                      {{#each users}}
+                                        <option value="{{id}}">{{userName}}</option>
+                                      {{/each}}
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="CategoryId" class="col-xs-2 col-form-label">Category</label>
-                            <div class="col-xs-10">
-                                <select class="form-control" name="CategoryId" id="CategoryId">
-                                    <option value="">Select...</option>
-                                  {{#each categories}}
-                                    <option value="{{id}}">{{title}}</option>
-                                  {{/each}}
-                                </select>
+                            <div class="form-group row">
+                                <label for="CategoryId" class="col-xs-2 col-form-label">Category</label>
+                                <div class="col-xs-10">
+                                    <select class="form-control" name="CategoryId" id="CategoryId">
+                                        <option value="">Select...</option>
+                                      {{#each categories}}
+                                        <option value="{{id}}">{{title}}</option>
+                                      {{/each}}
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
-                        <button type="submit" class="btn btn-warning"> Add Task </button>
-                    </form>
+                            <button type="submit" class="btn btn-warning"> Add Task </button>
+                        </form>
+                    </div> <!-- ./well -->
                 </div> <!-- ./tab-pane -->
             </div> <!-- /.tab-content -->
-        </div>
-    </div>
-</div>
+        </div> <!-- /.col -->
+    </div> <!-- /.row -->
+</div> <!-- /.container -->

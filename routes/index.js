@@ -5,6 +5,7 @@ const express = require('express'),
       tasks = require('./tasksRouter'),
       router = express.Router();
 
+// Main login page
 router.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
 })

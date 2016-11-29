@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1> {{title}} </h1>
+            <h2> System Users </h2>
 
         {{#if errors}}
           {{#each errors}}
@@ -10,93 +10,99 @@
         {{/if}}
 
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#user-list" aria-controls="user list" role="tab" data-toggle="tab">Users</a></li>
+                <li role="presentation" class="active"><a href="#user-list" aria-controls="user list" role="tab" data-toggle="tab">View Users</a></li>
                 <li role="presentation"><a href="#add-user" aria-controls="add user" role="tab" data-toggle="tab">Add User</a></li>
             </ul>
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="user-list">
-                    <h3> User List </h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th> Action </th>
-                                    <th> First Name </th>
-                                    <th> Last Name </th>
-                                    <th> Username </th>
-                                    <th> Email Address </th>
-                                    <th> Join Date </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {{#if users}}
-                              {{#each users}}
-                                <tr>
-                                    <td>
-                                        <a href="/completed"><i class="glyphicon glyphicon-ok"></i></a> &nbsp;
-                                        <a href="/edit"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
-                                        <a href="/remove"><i class="glyphicon glyphicon-remove"></i></a>
-                                    </td>
-                                    <td> {{firstName}} </td>
-                                    <td> {{lastName}} </td>
-                                    <td> {{userName}} </td>
-                                    <td> {{email}} </td>
-                                    <td> {{createdAt}} </td>
-                                </tr>
-                              {{/each}}
-                            {{else}}
-                                <tr>
-                                    <td colspan="6"> There is no data available </td>
-                                </tr>
-                            {{/if}}
-                            </tbody>
-                        </table>
-                    </div> <!-- ./table-responsive -->
+                    <br>
+                    <div class="well">
+                        <legend> User Listing </legend>
+                        <div class="table-responsive">
+                           <table class="table table-striped table-hover" id="users-table">
+                               <thead>
+                                   <tr>
+                                       <th> Action </th>
+                                       <th> First Name </th>
+                                       <th> Last Name </th>
+                                       <th> Username </th>
+                                       <th> Email Address </th>
+                                       <th> Join Date </th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                               {{#if users}}
+                                 {{#each users}}
+                                   <tr>
+                                       <td>
+                                           <a href="/completed"><i class="glyphicon glyphicon-ok"></i></a> &nbsp;
+                                           <a href="/edit"><i class="glyphicon glyphicon-pencil"></i></a> &nbsp;
+                                           <a href="/remove"><i class="glyphicon glyphicon-remove"></i></a>
+                                       </td>
+                                       <td> {{firstName}} </td>
+                                       <td> {{lastName}} </td>
+                                       <td> {{userName}} </td>
+                                       <td> {{email}} </td>
+                                       <td> {{createdAt}} </td>
+                                   </tr>
+                                 {{/each}}
+                               {{else}}
+                                   <tr>
+                                       <td colspan="6"> There is no data available </td>
+                                   </tr>
+                               {{/if}}
+                               </tbody>
+                           </table>
+                        </div> <!-- ./table-responsive -->
+                    </div> <!-- ./well -->
                 </div> <!-- /.tab-pane -->
 
                 <div role="tabpanel" class="tab-pane fade" id="add-user">
-                    <h3> Add New User </h3>
-                    <form method="POST" action="/users/addUser">
-                        <div class="form-group row">
-                            <label for="firstName" class="col-xs-2 col-form-label">First Name</label>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" name="firstName" id="firstName" />
+                    <br>
+                    <div class="well">
+                    <legend> Add New User </legend>
+                        <form method="POST" action="/users/addUser">
+                            <div class="form-group row">
+                                <label for="firstName" class="col-xs-2 col-form-label">First Name</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" name="firstName" id="firstName" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="lastName" class="col-xs-2 col-form-label">Last Name</label>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" name="lastName" id="lastName" />
+                            <div class="form-group row">
+                                <label for="lastName" class="col-xs-2 col-form-label">Last Name</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" name="lastName" id="lastName" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="userName" class="col-xs-2 col-form-label">User Name</label>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" name="userName" id="userName" />
+                            <div class="form-group row">
+                                <label for="userName" class="col-xs-2 col-form-label">User Name</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" name="userName" id="userName" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-xs-2 col-form-label">Email Address</label>
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" name="email" id="email" />
+                            <div class="form-group row">
+                                <label for="email" class="col-xs-2 col-form-label">Email Address</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" name="email" id="email" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-xs-2 col-form-label">Password</label>
-                            <div class="col-xs-10">
-                                <input type="password" class="form-control" name="password" id="password" />
+                            <div class="form-group row">
+                                <label for="password" class="col-xs-2 col-form-label">Password</label>
+                                <div class="col-xs-10">
+                                    <input type="password" class="form-control" name="password" id="password" />
+                                </div>
                             </div>
-                        </div>
 
-                        <button type="submit" class="btn btn-warning"> Add User </button>
-                    </form>
+                            <button type="submit" class="btn btn-warning"> Add User </button>
+                        </form>
+                    </div> <!-- ./well -->
                 </div> <!-- ./tab-pane -->
             </div> <!-- ./tab-content -->
-        </div>
-    </div>
-</div>
+        </div> <!-- ./col -->
+    </div> <!-- /.row -->
+</div> <!-- /.container -->

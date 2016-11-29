@@ -3,19 +3,54 @@
     <head>
         <title>{{title}}</title>
         <!-- Latest compiled and minified Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!--
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+        <!-- DataTables plugin -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/datatables.min.css" />
+        <!-- Bootstrap Darkly theme -->
+        <link rel="stylesheet" href="/css/vendor/bootstrap-darkly-theme.min.css" />
         <!-- Custom styles -->
         <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
+        <nav class="navbar navbar-fixed-top navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"  aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">TaskInator</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="/tasks">My Tasks</a></li>
+                        <li><a href="/users">Users</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div> <!-- /.container -->
+        </nav> <!-- /.navbar -->
+
         {{{body}}}
 
     <!-- jQuery -->
+    <!--
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Latest compiled and minified Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Slidereveal plugin -->
-    <script src="/js/vendor/slidereveal.min.js" />
+    <script src="/js/vendor/slidereveal.min.js"></script>
+    <!-- Backstretch plugin -->
+    <script src="/js/vendor/backstretch.min.js"></script>
+    <!-- DataTables plugin -->
+    <script src="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/datatables.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="/js/scripts.js"></script>
+
     </body>
 </html>
