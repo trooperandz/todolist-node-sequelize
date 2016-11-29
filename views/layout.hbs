@@ -2,17 +2,20 @@
 <html>
     <head>
         <title>{{title}}</title>
-        <!-- Latest compiled and minified Bootstrap CSS -->
-        <!--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-        <!-- DataTables plugin -->
+
         <link rel="stylesheet" href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/datatables.min.css" />
         <!-- Bootstrap Darkly theme -->
         <link rel="stylesheet" href="/css/vendor/bootstrap-darkly-theme.min.css" />
+        <!-- Spinner styles -->
+        <link rel="stylesheet" href="/css/spinner.css" />
         <!-- Custom styles -->
         <link rel="stylesheet" href="/css/style.css" />
     </head>
     <body>
+        <!-- Spinner container -->
+        <div class="spinner-div"></div>
+
+        <!-- Main program top navbar -->
         <nav class="navbar navbar-fixed-top navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -37,9 +40,6 @@
         {{{body}}}
 
     <!-- jQuery -->
-    <!--
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- Latest compiled and minified Bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

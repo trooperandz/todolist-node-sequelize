@@ -1,7 +1,8 @@
 "use strict";
 
 const Sequelize = require('sequelize'),
-      models = require('../models');
+      models = require('../models'),
+      moment = require('moment');
 
 module.exports = {
     getTasks: function(req, res) {
@@ -18,6 +19,7 @@ module.exports = {
                 }
             ]
         }).then(function(tasks) {
+            tasks = module.exports.formatDate(tasks)
             models.User.findAll().then(users => {
                 models.Category.findAll().then(categories => {
                     console.log('tasks: ' , tasks + 'users: ' + users + ' categories: ' + categories)
@@ -48,5 +50,27 @@ module.exports = {
         }).then(task => {
             res.redirect('/tasks')
         })
-    }
+    },
+
+    // Update task completed status
+    updateTask: function(req, res) {
+        console.log("reached updateTask fn")
+        let id = req.body.id;
+        models.Task.update({
+            completed: 1,
+        },  {
+            where:{ id }
+        }).then(task => {
+            res.send('success')
+        })
+    },
+
+    // Format dates using moment module
+    formatDate: function(array) {
+        array.forEach((item, index) => {
+            item.dataValues.createdAt = moment(item.dataValues.createdAt).format('MM/DD/YYYY')
+            item.dataValues.updatedAt = moment(item.dataValues.updatedAt).format('MM/DD/YYYY')
+        })
+        return array;
+    },
 }
