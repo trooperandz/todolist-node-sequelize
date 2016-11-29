@@ -1,6 +1,6 @@
 body {
     padding-top: 50px;
-    /*color: #ccc;*/
+    color: #ccc;
 }
 
 .navbar-inverse .navbar-brand {
@@ -11,24 +11,16 @@ legend {
     border-bottom: 1px solid #464545;
 }
 
+.text-blue {
+    color: #008cba;
+}
+
 .table thead tr th {
     border-bottom: 2px solid #375a7f;
 }
 
 .glyphicon:hover {
     cursor: pointer;
-}
-
-.glyphicon-remove {
-    color: maroon;
-}
-
-.glyphicon-pencil {
-    color: green;
-}
-
-.glyphicon-ok {
-    color: #008cba;
 }
 
 table th, table td {
