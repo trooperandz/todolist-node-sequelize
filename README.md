@@ -10,6 +10,8 @@
 
  * Handlebars is used for page templating
 
+ * User passwords are encrypted using the machinepack-passwords npm module
+
  * Bootstrap was used for this project, featuring the Darkly theme
 
  * The project features interactive tables, with sorting, searching and pagination (using the dataTables plugin)
