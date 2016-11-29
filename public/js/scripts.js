@@ -10,8 +10,6 @@ $(document).ready(function() {
           timeDelay = 3500;
 
     // Initialize dataTables
-    //$('#users-table').DataTable();
-    //$('#tasks-table').DataTable();
     $('table').DataTable();
 
     // Task table icon click handler

@@ -23,8 +23,13 @@ legend {
     cursor: pointer;
 }
 
+.table tbody tr td {
+    padding: 15px;
+}
+
 table th, table td {
     text-align: center;
+    vertical-align: middle;
 }
 
 .red {
