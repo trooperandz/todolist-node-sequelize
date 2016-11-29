@@ -37,7 +37,16 @@ module.exports = {
         let UserId = req.body.UserId;
 
         models.Task.create({title, notes, completed, CategoryId, UserId}).then(task => {
-            res.redirect('/tasks');
+            res.redirect('/tasks')
+        })
+    },
+
+    deleteTask: function(req, res) {
+        let id = req.params.id;
+        models.Task.destroy({
+            where:{id}
+        }).then(task => {
+            res.redirect('/tasks')
         })
     }
 }

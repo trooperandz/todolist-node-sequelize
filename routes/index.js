@@ -17,6 +17,7 @@ router.post('/users/addUser', usersController.addUser)
 // Task routes
 router.get('/tasks', tasksController.getTasks)
 router.post('/tasks/addTask', tasksController.addTask)
+router.get('/tasks/delete/:id', tasksController.deleteTask)
 
 /*
 router.get('/users', usersRouter);
