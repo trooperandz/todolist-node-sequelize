@@ -39,6 +39,7 @@ $(document).ready(function() {
                         // Remove spinner
                         removeSpinner();
                         if (response == 'success') {
+                            $(this).parent().parent().remove();
                             console.log('task should be updated to completed')
                         }
                     }, timeDelay);

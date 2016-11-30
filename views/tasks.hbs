@@ -15,93 +15,20 @@
                     <div class="well">
                         <legend> Pending Tasks </legend>
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover" id="tasks-table">
-                                <thead>
-                                    <tr class="text-blue">
-                                        <th> Action </th>
-                                        <th> User </th>
-                                        <th> Task </th>
-                                        <th> Notes </th>
-                                        <th> Category </th>
-                                        <th> Date Added </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {{#if tasks}}
-                                  {{#each tasks}}
-                                    {{#unless completed}}
-                                    <tr>
-                                        <td>
-                                            <a href="/tasks/update/{{id}}" data-id="{{id}}"><i class="glyphicon glyphicon-ok text-success" name="complete" data-toggle="tooltip" data-placement="bottom" title="Mark Completed"></i></a> &nbsp;
-                                            <a href="/tasks/edit/{{id}}" data-id="{{id}}"><i class="glyphicon glyphicon-pencil text-muted" name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
-                                            <a href="/tasks/delete/{{id}}" data-id="{{id}}"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>
-                                        </td>
-                                        <td> {{User.userName}} </td>
-                                        <td> {{title}} </td>
-                                        <td> {{notes}} </td>
-                                        <td> {{Category.title}} </td>
-                                        <td> {{createdAt}} </td>
-                                    </tr>
-                                    {{/unless}}
-                                  {{/each}}
-                                {{else}}
-                                    <tr>
-                                        <td colspan="6">There is no data available</td>
-                                    </tr>
-                                {{/if}}
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
-                        </div> <!-- ./table-responsive -->
-                    </div> <!-- ./well -->
-                </div> <!-- /.tab-pane -->
+                            {{{pendingTable}}}
+                        </div>
+                    </div>
+                </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="task-list-completed">
                     <br>
                     <div class="well">
                         <legend> Completed Tasks </legend>
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover" id="tasks-table">
-                                <thead>
-                                    <tr class="text-blue">
-                                        <th> Action </th>
-                                        <th> User </th>
-                                        <th> Task </th>
-                                        <th> Notes </th>
-                                        <th> Category </th>
-                                        <th> Date Completed </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {{#if tasks}}
-                                  {{#each tasks}}
-                                    {{#if completed}}
-                                    <tr>
-                                        <td>
-                                            <a href="/tasks/edit/{{id}}" data-id="{{id}}"><i class="glyphicon glyphicon-pencil text-muted" name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
-                                            <a href="/tasks/delete/{{id}}" data-id="{{id}}"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>
-                                        </td>
-                                        <td> {{User.userName}} </td>
-                                        <td> {{title}} </td>
-                                        <td> {{notes}} </td>
-                                        <td> {{Category.title}} </td>
-                                        <td> {{updatedAt}} </td>
-                                    </tr>
-                                    {{/if}}
-                                  {{/each}}
-                                {{else}}
-                                    <tr>
-                                        <td colspan="6">There is no data available</td>
-                                    </tr>
-                                {{/if}}
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
-                        </div> <!-- ./table-responsive -->
-                    </div> <!-- ./well -->
-                </div> <!-- /.tab-pane -->
+                            {{{completedTable}}}
+                        </div>
+                    </div>
+                </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="add-task">
                     <br>

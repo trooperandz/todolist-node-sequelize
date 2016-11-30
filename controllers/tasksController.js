@@ -22,13 +22,51 @@ module.exports = {
             tasks = module.exports.formatDate(tasks)
             models.User.findAll().then(users => {
                 models.Category.findAll().then(categories => {
-                    console.log('tasks: ' , tasks + 'users: ' + users + ' categories: ' + categories)
-                    return res.render('tasks', {title: 'Tasks Page', tasks, users, categories})
+                    let title = 'Tasks Page';
+                    let pendingTable = module.exports.buildTable(tasks, 0, 'tasks-pending', 'Date Added', 'update', 'glyphicon-ok', 'Mark Completed')
+                    let completedTable = module.exports.buildTable(tasks, 1, 'tasks-completed', 'Date Completed', 'reactivate', 'glyphicon-repeat', 'Return To Pending')
+                    // Note: users and categories are used for Add Task form dropdown generation
+                    return res.render('tasks', {title, pendingTable, completedTable, users, categories})
                 })
             })
-
-            //return res.render('tasks', {title: 'Tasks Page', tasks: tasks})
         })
+    },
+
+    buildTable: function(array, completedStatus, tableId, dateColTitle, updateRoute, glyphTitle, tooltipTitle) {
+        let html = `
+            <table class="table table-striped table-hover" id="${tableId}">
+                <thead>
+                    <tr class="text-blue">
+                        <th> Action </th>
+                        <th> User </th>
+                        <th> Task </th>
+                        <th> Notes </th>
+                        <th> Category </th>
+                        <th> ${dateColTitle} </th>
+                    </tr>
+                </thead>
+                <tbody>`;
+        array.forEach(item => {
+            if(item.completed == completedStatus) {
+            html += `
+                <tr>
+                    <td>
+                        <a href="/tasks/${updateRoute}/${item.id}" data-id="${item.id}"><i class="glyphicon ${glyphTitle} text-success" name="reactivate" data-toggle="tooltip" data-placement="bottom" title="${tooltipTitle}"></i></a> &nbsp;
+                        <a href="/tasks/edit/${item.id}" data-id="${item.id}"><i class="glyphicon glyphicon-pencil text-muted" name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
+                        <a href="/tasks/delete/${item.id}" data-id="${item.id}"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>
+                    </td>
+                    <td> ${item.User.userName} </td>
+                    <td> ${item.title} </td>
+                    <td> ${item.notes} </td>
+                    <td> ${item.Category.title} </td>
+                    <td> ${item.updatedAt} </td>
+                </tr>`;
+            }
+        })
+        html += `
+                </tbody>
+            </table>`;
+        return html;
     },
 
     addTask: function(req, res) {
