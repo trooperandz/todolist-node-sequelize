@@ -29,21 +29,37 @@ $(document).ready(function() {
 
         switch(action) {
             case 'complete':
-                let url = '/tasks/update';
                 $.ajax({
                     type: 'POST',
-                    url: url,
+                    url: '/tasks/update',
                     data: formData
-                }).done(function (response) {
-                    setTimeout( () => {
-                        // Remove spinner
+                }).done(response => {
+                    setTimeout(() => {
                         removeSpinner();
-                        if (response == 'success') {
+                        if(response == 'success') {
+                            // Remove the table row
                             $(this).parent().parent().remove();
                             console.log('task should be updated to completed')
                         }
-                    }, timeDelay);
-                });
+                    }, timeDelay)
+                })
+                break;
+            case 'delete':
+                $.ajax({
+                    type: 'POST',
+                    url: '/tasks/delete',
+                    data: formData
+                }).done(response => {
+                    setTimeout(() => {
+                        removeSpinner();
+                        if(response == 'success') {
+                            // Remove the table row
+                            $(this).parent().parent().remove();
+                            notify('Task successfully removed!', 'success');
+                            console.log('task should be removed from table')
+                        }
+                    }, timeDelay)
+                })
                 break;
         }
 
@@ -72,5 +88,17 @@ $(document).ready(function() {
     // Remove the spinner
     function removeSpinner() {
         $('div.spinner-div').empty();
+    }
+
+    // Return globally-positioned notification, from notify js plugin
+    function notify(msg, type) {
+        return $.notify(
+            msg,
+            type,
+            {
+                position: 'right',
+                autoHideDelay: 5000
+            }
+        );
     }
 })

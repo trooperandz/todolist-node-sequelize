@@ -23,8 +23,8 @@ module.exports = {
             models.User.findAll().then(users => {
                 models.Category.findAll().then(categories => {
                     let title = 'Tasks Page';
-                    let pendingTable = module.exports.buildTable(tasks, 0, 'tasks-pending', 'Date Added', 'update', 'glyphicon-ok', 'Mark Completed')
-                    let completedTable = module.exports.buildTable(tasks, 1, 'tasks-completed', 'Date Completed', 'reactivate', 'glyphicon-repeat', 'Return To Pending')
+                    let pendingTable = module.exports.buildTable(tasks, 0, 'tasks-pending', 'Date Added', 'update', 'glyphicon-ok', 'completed', 'Mark Completed')
+                    let completedTable = module.exports.buildTable(tasks, 1, 'tasks-completed', 'Date Completed', 'reactivate', 'glyphicon-repeat', 'reactivate', 'Return To Pending')
                     // Note: users and categories are used for Add Task form dropdown generation
                     return res.render('tasks', {title, pendingTable, completedTable, users, categories})
                 })
@@ -32,7 +32,7 @@ module.exports = {
         })
     },
 
-    buildTable: function(array, completedStatus, tableId, dateColTitle, updateRoute, glyphTitle, tooltipTitle) {
+    buildTable: function(array, completedStatus, tableId, dateColTitle, updateRoute, glyphTitle, updateName, tooltipTitle) {
         let html = `
             <table class="table table-striped table-hover" id="${tableId}">
                 <thead>
@@ -51,7 +51,7 @@ module.exports = {
             html += `
                 <tr>
                     <td>
-                        <a href="/tasks/${updateRoute}/${item.id}" data-id="${item.id}"><i class="glyphicon ${glyphTitle} text-success" name="reactivate" data-toggle="tooltip" data-placement="bottom" title="${tooltipTitle}"></i></a> &nbsp;
+                        <a href="/tasks/${updateRoute}/${item.id}" data-id="${item.id}"><i class="glyphicon ${glyphTitle} text-success" name="${updateName}" data-toggle="tooltip" data-placement="bottom" title="${tooltipTitle}"></i></a> &nbsp;
                         <a href="/tasks/edit/${item.id}" data-id="${item.id}"><i class="glyphicon glyphicon-pencil text-muted" name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
                         <a href="/tasks/delete/${item.id}" data-id="${item.id}"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>
                     </td>
@@ -82,11 +82,12 @@ module.exports = {
     },
 
     deleteTask: function(req, res) {
-        let id = req.params.id;
+        let id = req.body.id;
         models.Task.destroy({
             where:{id}
         }).then(task => {
-            res.redirect('/tasks')
+            //res.redirect('/tasks')
+            res.send('success')
         })
     },
 
