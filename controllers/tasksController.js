@@ -65,30 +65,23 @@ module.exports = {
         let CategoryId = req.body.CategoryId;
         let UserId = req.body.UserId;
 
-        models.Task.create({title, notes, completed, CategoryId, UserId}).then(task => {
+        //models.Task.create({title, notes, completed, CategoryId, UserId}).then(task => {
+        services.createTask(title, notes, completed, CategoryId, UserId).then(data => {
             res.redirect('/tasks')
         })
     },
 
     deleteTask: function(req, res) {
         let id = req.body.id;
-        models.Task.destroy({
-            where:{id}
-        }).then(task => {
-            //res.redirect('/tasks')
+        services.deleteTask(id).then(data => {
             res.send('success')
         })
     },
 
     // Update task completed status
     updateTask: function(req, res) {
-        console.log("reached updateTask fn")
         let id = req.body.id;
-        models.Task.update({
-            completed: 1,
-        },  {
-            where:{ id }
-        }).then(task => {
+        services.updateTask(1, id).then(data => {
             res.send('success')
         })
     },

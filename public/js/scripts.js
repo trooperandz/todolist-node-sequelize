@@ -21,10 +21,10 @@ $(document).ready(function() {
         initializeSpinner()
 
         // Determine which type of action based on name attribute (complete, edit, delete)
-        let action = $(this).children('i').attr('name');
+        let action = $(this).children('i').attr('name')
 
         // Grab the task id
-        let id = $(this).data('id');
+        let id = $(this).data('id')
 
         // Grab the table row
         let tableRow = $(this).parent().parent()
@@ -74,7 +74,7 @@ $(document).ready(function() {
                     data: formData
                 }).done(response => {
                     setTimeout(() => {
-                        removeSpinner();
+                        removeSpinner()
                         if(response == 'success') {
                             // Remove the table row
                             let tableId = '#' + tableRow.parent().parent().attr('id')
@@ -85,7 +85,6 @@ $(document).ready(function() {
                 })
                 break;
         }
-
     })
 
     // Show form errors if any occurred
@@ -96,7 +95,7 @@ $(document).ready(function() {
                 msg += error;
             });
             // Show error notification
-            notify(msg, 'error', 'right');
+            notify(msg, 'error', 'right')
             return true;
         } else {
             return false;
@@ -105,12 +104,12 @@ $(document).ready(function() {
 
     // Load the spinner
     function initializeSpinner() {
-        $('div.spinner-div').html('<div class="spinner">Loading...</div>');
+        $('div.spinner-div').html('<div class="spinner">Loading...</div>')
     }
 
     // Remove the spinner
     function removeSpinner() {
-        $('div.spinner-div').empty();
+        $('div.spinner-div').empty()
     }
 
     // Activate dataTables
@@ -127,6 +126,6 @@ $(document).ready(function() {
                 position: position,
                 autoHideDelay: 5000
             }
-        );
+        )
     }
 })

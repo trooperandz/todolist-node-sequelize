@@ -20,11 +20,23 @@ module.exports = {
         })
     },
 
+    createTask: function(title, notes, completed, CategoryId, UserId) {
+        return models.Task.create({
+            title, notes, completed, CategoryId, UserId
+        })
+    },
+
     updateTask: function(status, id) {
         return models.Task.update({
             completed: status,
         },  {
             where:{ id }
+        })
+    },
+
+    deleteTask: function(id) {
+        return models.Task.destroy({
+            where: { id }
         })
     },
 
