@@ -2,26 +2,15 @@
 
 const Sequelize = require('sequelize'),
       models = require('../models'),
+      services = require('../services/services'),
       moment = require('moment');
 
 module.exports = {
     getTasks: function(req, res) {
-        models.Task.findAll({
-            include: [
-                {
-                    model: models.User,
-                    required: true,
-                },
-
-                {
-                    model: models.Category,
-                    required: true
-                }
-            ]
-        }).then(function(tasks) {
+        services.getTasks().then(tasks => {
             tasks = module.exports.formatDate(tasks)
-            models.User.findAll().then(users => {
-                models.Category.findAll().then(categories => {
+            services.getUsers().then(users => {
+                services.getCategories().then(categories => {
                     let title = 'Tasks Page';
                     let pendingTable = module.exports.buildTable(tasks, 0, 'tasks-pending', 'Date Added', 'update', 'glyphicon-ok', 'completed', 'Mark Completed')
                     let completedTable = module.exports.buildTable(tasks, 1, 'tasks-completed', 'Date Completed', 'reactivate', 'glyphicon-repeat', 'reactivate', 'Return To Pending')
