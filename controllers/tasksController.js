@@ -93,6 +93,14 @@ module.exports = {
         })
     },
 
+    // Reactivate task to pending
+    reactivateTask: function(req, res) {
+        let id = req.body.id;
+        services.updateTask(0, id).then(data => {
+            res.send('success')
+        })
+    },
+
     // Format dates using moment module
     formatDate: function(array) {
         array.forEach((item, index) => {

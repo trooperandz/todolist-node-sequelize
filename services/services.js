@@ -20,6 +20,14 @@ module.exports = {
         })
     },
 
+    updateTask: function(status, id) {
+        return models.Task.update({
+            completed: status,
+        },  {
+            where:{ id }
+        })
+    },
+
     getUsers: function() {
         return models.User.findAll()
     },
