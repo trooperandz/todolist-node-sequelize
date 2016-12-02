@@ -41,7 +41,19 @@ module.exports = {
     },
 
     getUsers: function() {
-        return models.User.findAll()
+        return models.User.findAll();
+    },
+
+    createUser: function(firstName, lastName, userName, email, password) {
+        return models.User.create({
+            firstName, lastName, userName, email, password
+        })
+    },
+
+    deleteUser: function(id) {
+        return models.User.destroy({
+            where: { id }
+        })
     },
 
     getCategories: function() {

@@ -1,7 +1,7 @@
 "use strict";
 
 $(document).ready(function() {
-
+    // Check out requirejs
     // Global regex patterns
     const validName = /^[A-Za-z]+$/,
           validNumber = /^[0-9]+$/,
@@ -15,7 +15,7 @@ $(document).ready(function() {
     initDataTables()
 
     // Task table icon click handler
-    $('table a').on('click', function(e) {
+    $('table.task a').on('click', function(e) {
         e.preventDefault()
 
         initializeSpinner()
@@ -23,7 +23,7 @@ $(document).ready(function() {
         // Determine which type of action based on name attribute (complete, edit, delete)
         let action = $(this).children('i').attr('name')
 
-        // Grab the task id
+        // Grab the anchor id
         let id = $(this).data('id')
 
         // Grab the table row
@@ -87,6 +87,154 @@ $(document).ready(function() {
         }
     })
 
+    // User table icon click handler
+    $('table.user a').on('click', function(e) {
+        e.preventDefault()
+
+        initializeSpinner()
+
+        // Determine which type of action based on name attribute (complete, edit, delete)
+        let action = $(this).children('i').attr('name')
+
+        // Grab the anchor id
+        let id = $(this).data('id')
+
+        // Grab the table row
+        let tableRow = $(this).parent().parent()
+
+        // Prepare form data for transmission
+        let formData = 'id=' + id;
+
+        switch(action) {
+            case 'update':
+                $.ajax({
+                    type: 'POST',
+                    url: '/users/create',
+                    data: formData
+                }).done(response => {
+                    setTimeout(() => {
+                        removeSpinner()
+                        if(response == 'success') {
+                            // Remove the selected row from pending table and move to completed table
+                            $('#'+pendTableId).DataTable().row(tableRow).remove().draw()
+                            $('#'+compTableId).DataTable().row.add(tableRow).draw()
+                            notify('Task was moved to completed!', 'success')
+                        }
+                    }, timeDelay)
+                })
+                break;
+            case 'delete':
+                $.ajax({
+                    type: 'POST',
+                    url: '/users/delete',
+                    data: formData
+                }).done(response => {
+                    setTimeout(() => {
+                        removeSpinner()
+                        if(response == 'success') {
+                            // Remove the table row
+                            let tableId = '#' + tableRow.parent().parent().attr('id')
+                            $(tableId).DataTable().row(tableRow).remove().draw()
+                            notify('User successfully removed!', 'success')
+                        }
+                    }, timeDelay)
+                })
+                break;
+        }
+    })
+
+    // User form submit handler
+    $('#user-form button').on('click', function(e) {
+        e.preventDefault();
+
+        // Grab inputs
+        let firstName = $('#firstName').val()
+        let lastName = $('#lastName').val()
+        let userName = $('#userName').val()
+        let email = $('#email').val()
+        let password = $('#password').val()
+
+        // Save inputs for use in users table append action
+        let createdAt = moment().format('MM/DD/YYYY')
+        var userObj = {
+            firstName,
+            lastName,
+            userName,
+            email,
+            createdAt,
+        }
+
+        // Validate inputs
+        let errorArr = []
+
+        if (firstName == '') {
+            errorArr.push('You entered an invalid First Name. \n')
+        }
+        if (lastName == '') {
+             errorArr.push('You entered an invalid Last Name. \n')
+        }
+        if (userName == '') {
+             errorArr.push('You entered an invalid Username. \n')
+        }
+        if (!validEmail.test(email)) {
+             errorArr.push('You entered an invalid Email Address. \n')
+        }
+        if (!validPass.test(password)) {
+            errorArr.push('Your password did not meet the minimum requirements.')
+        }
+
+        if(checkErrors(errorArr)) {
+            return false;
+        }
+
+        let formData = $('#user-form').serialize();
+
+        initializeSpinner();
+
+        $.ajax({
+            type: 'POST',
+            url: '/users/create',
+            data: formData
+        }).done(response => {
+            setTimeout(() => {
+                removeSpinner()
+                if(response == 'success') {
+                    // Add new user to the user table
+                    $('table.user').DataTable().row.add([
+                        '<a href="/edit"><i class="glyphicon glyphicon-pencil text-muted" name="create" data-toggle="tooltip data-placement="bottom" title="Edit User"></i></a> &nbsp;<a href="/remove"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User"></i></a>',
+                        firstName,
+                        lastName,
+                        userName,
+                        email,
+                        createdAt
+                    ]).draw()
+
+                    // Simulate user click event on Users tab, to display updated User table
+                    //$('ul.nav-tabs').children()
+
+                    // Clear form inputs
+                    $('#user-form input').val('')
+
+                    notify("User was added successfully!", 'success', 'right')
+                }
+            }, timeDelay)
+        })
+    })
+
+    // Build user table row
+    function buildUserTableRow(obj) {
+        let html =
+            '<tr>' +
+                '<td> Hey </td>' +
+                '<td> Hello </td>' +
+                '<td> Matt </td>' +
+                '<td> Matt </td>' +
+                '<td> email </td>' +
+                '<td> createdAt </td>' +
+            '</tr>';
+        return html;
+    }
+
     // Show form errors if any occurred
     function checkErrors(errorArr) {
         if (errorArr.length > 0) {
@@ -128,4 +276,4 @@ $(document).ready(function() {
             }
         )
     }
-})
+});
