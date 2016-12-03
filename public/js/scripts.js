@@ -12,22 +12,22 @@ $(document).ready(function() {
           compTableId = 'tasks-completed';
 
     // Initialize dataTables
-    initDataTables()
+    initDataTables();
 
     // Task table icon click handler
     $('table.task a').on('click', function(e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        initializeSpinner()
+        initializeSpinner();
 
         // Determine which type of action based on name attribute (complete, edit, delete)
-        let action = $(this).children('i').attr('name')
+        let action = $(this).children('i').attr('name');
 
         // Grab the anchor id
-        let id = $(this).data('id')
+        let id = $(this).data('id');
 
         // Grab the table row
-        let tableRow = $(this).parent().parent()
+        let tableRow = $(this).parent().parent();
 
         // Prepare form data for transmission
         let formData = 'id=' + id;
@@ -40,14 +40,14 @@ $(document).ready(function() {
                     data: formData
                 }).done(response => {
                     setTimeout(() => {
-                        removeSpinner()
+                        removeSpinner();
                         if(response == 'success') {
                             // Remove the selected row from pending table and move to completed table
-                            $('#'+pendTableId).DataTable().row(tableRow).remove().draw()
-                            $('#'+compTableId).DataTable().row.add(tableRow).draw()
-                            notify('Task was moved to completed!', 'success')
+                            $('#'+pendTableId).DataTable().row(tableRow).remove().draw();
+                            $('#'+compTableId).DataTable().row.add(tableRow).draw();
+                            notify('Task was moved to completed!', 'success');
                         }
-                    }, timeDelay)
+                    }, timeDelay);
                 })
                 break;
             case 'reactivate':
@@ -57,14 +57,14 @@ $(document).ready(function() {
                     data: formData
                 }).done(response => {
                     setTimeout(() => {
-                        removeSpinner()
+                        removeSpinner();
                         if(response == 'success') {
                             // Remove the selected row from completed table and move to pending table
-                            $('#'+compTableId).DataTable().row(tableRow).remove().draw()
-                            $('#'+pendTableId).DataTable().row.add(tableRow).draw()
-                            console.log('reactivated')
+                            $('#'+compTableId).DataTable().row(tableRow).remove().draw();
+                            $('#'+pendTableId).DataTable().row.add(tableRow).draw();
+                            console.log('reactivated');
                         }
-                    }, timeDelay)
+                    }, timeDelay);
                 })
                 break;
             case 'delete':
@@ -74,14 +74,14 @@ $(document).ready(function() {
                     data: formData
                 }).done(response => {
                     setTimeout(() => {
-                        removeSpinner()
+                        removeSpinner();
                         if(response == 'success') {
                             // Remove the table row
-                            let tableId = '#' + tableRow.parent().parent().attr('id')
-                            $(tableId).DataTable().row(tableRow).remove().draw()
-                            notify('Task successfully removed!', 'success')
+                            let tableId = '#' + tableRow.parent().parent().attr('id');
+                            $(tableId).DataTable().row(tableRow).remove().draw();
+                            notify('Task successfully removed!', 'success');
                         }
-                    }, timeDelay)
+                    }, timeDelay);
                 })
                 break;
         }
@@ -89,18 +89,18 @@ $(document).ready(function() {
 
     // User table icon click handler
     $('table.user a').on('click', function(e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        initializeSpinner()
+        initializeSpinner();
 
         // Determine which type of action based on name attribute (complete, edit, delete)
-        let action = $(this).children('i').attr('name')
+        let action = $(this).children('i').attr('name');
 
         // Grab the anchor id
-        let id = $(this).data('id')
+        let id = $(this).data('id');
 
         // Grab the table row
-        let tableRow = $(this).parent().parent()
+        let tableRow = $(this).parent().parent();
 
         // Prepare form data for transmission
         let formData = 'id=' + id;
@@ -113,14 +113,14 @@ $(document).ready(function() {
                     data: formData
                 }).done(response => {
                     setTimeout(() => {
-                        removeSpinner()
+                        removeSpinner();
                         if(response == 'success') {
                             // Remove the selected row from pending table and move to completed table
-                            $('#'+pendTableId).DataTable().row(tableRow).remove().draw()
-                            $('#'+compTableId).DataTable().row.add(tableRow).draw()
-                            notify('Task was moved to completed!', 'success')
+                            $('#'+pendTableId).DataTable().row(tableRow).remove().draw();
+                            $('#'+compTableId).DataTable().row.add(tableRow).draw();
+                            notify('Task was moved to completed!', 'success');
                         }
-                    }, timeDelay)
+                    }, timeDelay);
                 })
                 break;
             case 'delete':
@@ -130,32 +130,32 @@ $(document).ready(function() {
                     data: formData
                 }).done(response => {
                     setTimeout(() => {
-                        removeSpinner()
+                        removeSpinner();
                         if(response == 'success') {
                             // Remove the table row
-                            let tableId = '#' + tableRow.parent().parent().attr('id')
-                            $(tableId).DataTable().row(tableRow).remove().draw()
-                            notify('User successfully removed!', 'success')
+                            let tableId = '#' + tableRow.parent().parent().attr('id');
+                            $(tableId).DataTable().row(tableRow).remove().draw();
+                            notify('User successfully removed!', 'success');
                         }
-                    }, timeDelay)
-                })
+                    }, timeDelay);
+                });
                 break;
         }
-    })
+    });
 
     // User form submit handler
     $('#user-form button').on('click', function(e) {
         e.preventDefault();
 
         // Grab inputs
-        let firstName = $('#firstName').val()
-        let lastName = $('#lastName').val()
-        let userName = $('#userName').val()
-        let email = $('#email').val()
-        let password = $('#password').val()
+        let firstName = $('#firstName').val();
+        let lastName = $('#lastName').val();
+        let userName = $('#userName').val();
+        let email = $('#email').val();
+        let password = $('#password').val();
 
         // Save inputs for use in users table append action
-        let createdAt = moment().format('MM/DD/YYYY')
+        let createdAt = moment().format('MM/DD/YYYY');
         var userObj = {
             firstName,
             lastName,
@@ -165,22 +165,22 @@ $(document).ready(function() {
         }
 
         // Validate inputs
-        let errorArr = []
+        let errorArr = [];
 
         if (firstName == '') {
-            errorArr.push('You entered an invalid First Name. \n')
+            errorArr.push('You entered an invalid First Name. \n');
         }
         if (lastName == '') {
-             errorArr.push('You entered an invalid Last Name. \n')
+             errorArr.push('You entered an invalid Last Name. \n');
         }
         if (userName == '') {
-             errorArr.push('You entered an invalid Username. \n')
+             errorArr.push('You entered an invalid Username. \n');
         }
         if (!validEmail.test(email)) {
-             errorArr.push('You entered an invalid Email Address. \n')
+             errorArr.push('You entered an invalid Email Address. \n');
         }
         if (!validPass.test(password)) {
-            errorArr.push('Your password did not meet the minimum requirements.')
+            errorArr.push('Your password did not meet the minimum requirements.');
         }
 
         if(checkErrors(errorArr)) {
@@ -197,7 +197,7 @@ $(document).ready(function() {
             data: formData
         }).done(response => {
             setTimeout(() => {
-                removeSpinner()
+                removeSpinner();
                 if(response == 'success') {
                     // Add new user to the user table
                     $('table.user').DataTable().row.add([
@@ -207,33 +207,19 @@ $(document).ready(function() {
                         userName,
                         email,
                         createdAt
-                    ]).draw()
+                    ]).draw();
 
                     // Simulate user click event on Users tab, to display updated User table
                     //$('ul.nav-tabs').children()
 
                     // Clear form inputs
-                    $('#user-form input').val('')
+                    $('#user-form input').val('');
 
-                    notify("User was added successfully!", 'success', 'right')
+                    notify("User was added successfully!", 'success', 'right');
                 }
-            }, timeDelay)
-        })
-    })
-
-    // Build user table row
-    function buildUserTableRow(obj) {
-        let html =
-            '<tr>' +
-                '<td> Hey </td>' +
-                '<td> Hello </td>' +
-                '<td> Matt </td>' +
-                '<td> Matt </td>' +
-                '<td> email </td>' +
-                '<td> createdAt </td>' +
-            '</tr>';
-        return html;
-    }
+            }, timeDelay);
+        });
+    });
 
     // Show form errors if any occurred
     function checkErrors(errorArr) {
@@ -243,7 +229,7 @@ $(document).ready(function() {
                 msg += error;
             });
             // Show error notification
-            notify(msg, 'error', 'right')
+            notify(msg, 'error', 'right');
             return true;
         } else {
             return false;
@@ -252,17 +238,17 @@ $(document).ready(function() {
 
     // Load the spinner
     function initializeSpinner() {
-        $('div.spinner-div').html('<div class="spinner">Loading...</div>')
+        $('div.spinner-div').html('<div class="spinner">Loading...</div>');
     }
 
     // Remove the spinner
     function removeSpinner() {
-        $('div.spinner-div').empty()
+        $('div.spinner-div').empty();
     }
 
     // Activate dataTables
     function initDataTables() {
-        $('table').DataTable()
+        $('table').DataTable();
     }
 
     // Return globally-positioned notification, from notify js plugin
@@ -274,6 +260,6 @@ $(document).ready(function() {
                 position: position,
                 autoHideDelay: 5000
             }
-        )
+        );
     }
 });

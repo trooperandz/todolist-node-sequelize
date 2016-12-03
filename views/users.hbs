@@ -36,8 +36,8 @@
                                  {{#each users}}
                                    <tr>
                                        <td>
-                                           <a href="/edit"><i class="glyphicon glyphicon-pencil text-muted" name="update" data-toggle="tooltip" data-placement="bottom" title="Edit User"></i></a> &nbsp;
-                                           <a href="/delete"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User"></i></a>
+                                           <a href="/users/update" data-id="{{id}}"><i class="glyphicon glyphicon-pencil text-muted" name="update" data-toggle="tooltip" data-placement="bottom" title="Edit User"></i></a> &nbsp;
+                                           <a href="/users/delete" data-id="{{id}}"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User"></i></a>
                                        </td>
                                        <td> {{firstName}} </td>
                                        <td> {{lastName}} </td>
