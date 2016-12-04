@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+'use strict';
 
-// Get tasks listings
-router.get('/', function(req, res, next) {
-    res.render('tasks', { title: 'Tasks Page', message: "This is the tasks page!"});
-});
+const express = require('express'),
+      router = express.Router(),
+      tasksController = require('../controllers/tasksController');
+
+router.get('/', tasksController.getTasks);
+router.post('/addTask', tasksController.addTask);
+router.post('/update', tasksController.updateTask);
+router.post('/reactivate', tasksController.reactivateTask);
+router.post('/delete', tasksController.deleteTask);
 
 module.exports = router;

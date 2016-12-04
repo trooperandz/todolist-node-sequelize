@@ -1,24 +1,12 @@
-"use strict";
+'use strict';
 
 const express = require('express'),
-      controller = require('../controllers/usersController'),
-      router = express.Router();
+      router = express.Router(),
+      usersController = require('../controllers/usersController');
 
-/* GET users listing. */
-//router.get('/', controller.getUsers)
-
-router.get('/', function(req, res, next) {
-    var users = [
-            {
-                name: "matt",
-                age: 33
-            },
-            {
-                name: "marta",
-                age: 32
-            }
-        ];
-    res.render('users', {title: 'Users Page', users: users});
-});
+router.get('/', usersController.getUsers);
+router.post('/create', usersController.addUser);
+router.post('/update', usersController.updateUser);
+router.post('/delete', usersController.deleteUser);
 
 module.exports = router;

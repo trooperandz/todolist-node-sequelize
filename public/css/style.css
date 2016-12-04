@@ -7,6 +7,11 @@ body {
     color: #008cba;
 }
 
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
 legend {
     border-bottom: 1px solid #464545;
 }
@@ -25,6 +30,7 @@ legend {
 
 .table tbody tr td {
     padding: 15px;
+    border-bottom: 1px solid #464545;
 }
 
 table th, table td {
