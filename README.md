@@ -14,10 +14,14 @@
 
  * Bootstrap was used for this project, featuring the Darkly theme
 
- * The project features interactive tables, with sorting, searching and pagination (using the dataTables plugin)
+ * The project features interactive tables, with sorting, searching and pagination (using the DataTables plugin)
 
  * The Users page and Tasks pages have tabs for viewing the data table or the Add New form
 
  * Users may edit and delete users or tasks by selecting the icons in the tables under the 'Action' column
+
+ * All table actions utilize AJAX to prevent page refreshes.
+
+ * The Notify.js plugin is used for system messages and notifications
 
  * The site is fully responsive
