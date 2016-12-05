@@ -62,7 +62,7 @@ $(document).ready(function() {
                                 category,
                                 updatedAt,
                             ]).draw();
-                            notify('legend', 'Task was moved to completed!', 'success', 'top left');
+                            notify('thead', 'Task was moved to completed!', 'success', 'top left');
                         }
                     }, timeDelay);
                 })
@@ -87,7 +87,7 @@ $(document).ready(function() {
                                 category,
                                 updatedAt,
                             ]).draw();
-                            notify('legend', 'Task was moved back to pending!', 'success', 'top left');
+                            notify('thead', 'Task was moved back to pending!', 'success', 'top left');
                         }
                     }, timeDelay);
                 })
@@ -104,7 +104,7 @@ $(document).ready(function() {
                             // Remove the table row
                             let tableId = '#' + tableRow.parent().parent().attr('id');
                             $(tableId).DataTable().row(tableRow).remove().draw();
-                            notify('legend', 'Task successfully removed!', 'success', 'top left');
+                            notify('thead', 'Task successfully removed!', 'success', 'top left');
                         }
                     }, timeDelay);
                 })
@@ -143,7 +143,7 @@ $(document).ready(function() {
                             // Remove the selected row from pending table and move to completed table
                             $('#'+pendTableId).DataTable().row(tableRow).remove().draw();
                             $('#'+compTableId).DataTable().row.add(tableRow).draw();
-                            notify('Task was moved to completed!', 'success');
+                            notify('New user added successfully!', 'success');
                         }
                     }, timeDelay);
                 })
@@ -160,7 +160,7 @@ $(document).ready(function() {
                             // Remove the table row
                             let tableId = '#' + tableRow.parent().parent().attr('id');
                             $(tableId).DataTable().row(tableRow).remove().draw();
-                            notify('User successfully removed!', 'success');
+                            notify('thead', 'User successfully removed!', 'success', 'top left');
                         }
                     }, timeDelay);
                 });

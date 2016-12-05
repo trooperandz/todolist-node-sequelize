@@ -16,12 +16,12 @@
 
  * The project features interactive tables, with sorting, searching and pagination (using the DataTables plugin)
 
- * The Users page and Tasks pages have tabs for viewing the data table or the Add New form
+ * The Users page and Tasks pages have tabs for viewing the data table or the Add New forms
 
  * Users may edit and delete users or tasks by selecting the icons in the tables under the 'Action' column
 
- * All table actions utilize AJAX to prevent page refreshes.
+ * All table actions utilize AJAX to prevent page refreshes, and tables are updated dynamically after changes have been made
 
- * The Notify.js plugin is used for system messages and notifications
+ * The Notify.js plugin is used for system messages and notifications for important user action feedback
 
  * The site is fully responsive
