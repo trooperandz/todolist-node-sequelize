@@ -15,7 +15,8 @@ $(document).ready(function() {
     initDataTables();
 
     // Task table icon click handler
-    $('table.task a').on('click', function(e) {
+    //$('table.task a').on('click', function(e) {
+    $('table.task').on('click', 'a', function(e) {
         e.preventDefault();
 
         initializeSpinner();
@@ -29,6 +30,13 @@ $(document).ready(function() {
         // Grab the table row
         let tableRow = $(this).parent().parent();
 
+        // Grab all table <td> text for insertion into new DataTables row
+        let name = tableRow.children().eq(1).text();
+        let title = tableRow.children().eq(2).text();
+        let notes = tableRow.children().eq(3).text();
+        let category = tableRow.children().eq(4).text();
+        let updatedAt = tableRow.children().eq(5).text();
+
         // Prepare form data for transmission
         let formData = 'id=' + id;
 
@@ -41,11 +49,20 @@ $(document).ready(function() {
                 }).done(response => {
                     setTimeout(() => {
                         removeSpinner();
-                        if(response == 'success') {
+                        // Note: response contains table <td> markup under 'Action' column
+                        if(response) {
+                            console.log('response: ' + response);
                             // Remove the selected row from pending table and move to completed table
                             $('#'+pendTableId).DataTable().row(tableRow).remove().draw();
-                            $('#'+compTableId).DataTable().row.add(tableRow).draw();
-                            notify('Task was moved to completed!', 'success');
+                            $('#'+compTableId).DataTable().row.add([
+                                response,
+                                name,
+                                title,
+                                notes,
+                                category,
+                                updatedAt,
+                            ]).draw();
+                            notify('legend', 'Task was moved to completed!', 'success', 'top left');
                         }
                     }, timeDelay);
                 })
@@ -58,11 +75,19 @@ $(document).ready(function() {
                 }).done(response => {
                     setTimeout(() => {
                         removeSpinner();
-                        if(response == 'success') {
+                        // Note: response contains table <td> markup under 'Action' column
+                        if(response) {
                             // Remove the selected row from completed table and move to pending table
                             $('#'+compTableId).DataTable().row(tableRow).remove().draw();
-                            $('#'+pendTableId).DataTable().row.add(tableRow).draw();
-                            console.log('reactivated');
+                            $('#'+pendTableId).DataTable().row.add([
+                                response,
+                                name,
+                                title,
+                                notes,
+                                category,
+                                updatedAt,
+                            ]).draw();
+                            notify('legend', 'Task was moved back to pending!', 'success', 'top left');
                         }
                     }, timeDelay);
                 })
@@ -79,7 +104,7 @@ $(document).ready(function() {
                             // Remove the table row
                             let tableId = '#' + tableRow.parent().parent().attr('id');
                             $(tableId).DataTable().row(tableRow).remove().draw();
-                            notify('Task successfully removed!', 'success');
+                            notify('legend', 'Task successfully removed!', 'success', 'top left');
                         }
                     }, timeDelay);
                 })
@@ -215,7 +240,7 @@ $(document).ready(function() {
                     // Clear form inputs
                     $('#user-form input').val('');
 
-                    notify("User was added successfully!", 'success', 'right');
+                    notify('User was added successfully!', 'success', 'right');
                 }
             }, timeDelay);
         });
@@ -229,7 +254,7 @@ $(document).ready(function() {
                 msg += error;
             });
             // Show error notification
-            notify(msg, 'error', 'right');
+            notify('', msg, 'error', 'right');
             return true;
         } else {
             return false;
@@ -252,8 +277,8 @@ $(document).ready(function() {
     }
 
     // Return globally-positioned notification, from notify js plugin
-    function notify(msg, type, position) {
-        return $.notify(
+    function notify(element, msg, type, position) {
+        return $(element).notify(
             msg,
             type,
             {

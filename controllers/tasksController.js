@@ -50,13 +50,16 @@ function buildTable (array, completedStatus, tableId, dateColTitle, updateRoute,
             <tbody>`;
         array.forEach(item => {
             if(item.completed == completedStatus) {
-            html += `
+                let tableAnchors = getTableAnchors({
+                    updateRoute,
+                    id:item.id,
+                    glyphClass,
+                    updateName,
+                    tooltipTitle,
+                });
+                html += `
                 <tr>
-                    <td>
-                        <a href="/tasks/${updateRoute}/${item.id}" data-id="${item.id}"><i class="glyphicon ${glyphClass} text-success"  name="${updateName}" data-toggle="tooltip" data-placement="bottom" title="${tooltipTitle}"></i></a> &nbsp;
-                        <a href="/tasks/edit/${item.id}" data-id="${item.id}"><i class="glyphicon glyphicon-pencil  text-muted"name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
-                        <a href="/tasks/delete/${item.id}" data-id="${item.id}"><i class="glyphicon glyphicon-remove  text-danger"name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>
-                    </td>
+                    <td> ${tableAnchors} </td>
                     <td> ${item.User.userName} </td>
                     <td> ${item.title} </td>
                     <td> ${item.notes} </td>
@@ -68,6 +71,26 @@ function buildTable (array, completedStatus, tableId, dateColTitle, updateRoute,
         html += `
                 </tbody>
             </table>`;
+    return html;
+}
+
+/**
+ * Build the table action <td> first anchor for the task update action link instructions.
+ * When table row is moved to another table, the anchor needs updating for the correct action to take place w/out page refresh
+ *
+ * @param {string} updateRoute - The express route
+ * @param {number} id - The database id identifier
+ * @param {string} glyphClass - Glyphicon to display
+ * @param {string} updateName - HTML name attribute for switch statement
+ * @param {string} tooltipTitle - Tooltip information to display
+ * @return {string} html - The table <a> html
+ */
+function getTableAnchors(obj) {
+    let html = `
+        <a href="/tasks/${obj.updateRoute}/${obj.id}" data-id="${obj.id}"><i class="glyphicon ${obj.glyphClass} text-success"  name="${obj.updateName}" data-toggle="tooltip" data-placement="bottom" title="${obj.tooltipTitle}"></i></a> &nbsp;
+        <a href="/tasks/edit/${obj.id}" data-id="${obj.id}"><i class="glyphicon glyphicon-pencil  text-muted"name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
+        <a href="/tasks/delete/${obj.id}" data-id="${obj.id}"><i class="glyphicon glyphicon-remove  text-danger"name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>`;
+    console.log('table html: ' + html);
     return html;
 }
 
@@ -107,19 +130,33 @@ module.exports = {
         });
     },
 
-    // Update task completed status
+    // Update task completed status, and send back <td> action row
     updateTask: (req, res) => {
         let id = req.body.id;
         services.updateTask(1, id).then(data => {
-            res.send('success');
+            let html = getTableAnchors({
+                updateRoute:'reactivate',
+                id:id,
+                glyphClass:'glyphicon-repeat',
+                updateName:'reactivate',
+                tooltipTitle:'Return To Pending',
+            });
+            res.send(html);
         });
     },
 
-    // Reactivate task to pending
+    // Reactivate task to pending, and send back <td> action row
     reactivateTask: (req, res) => {
         let id = req.body.id;
         services.updateTask(0, id).then(data => {
-            res.send('success');
+            let html = getTableAnchors({
+                updateRoute:'update',
+                id:id,
+                glyphClass:'glyphicon-ok',
+                updateName:'completed',
+                tooltipTitle:'Mark Completed',
+            });
+            res.send(html);
         });
     },
 }
