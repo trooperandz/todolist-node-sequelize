@@ -1,4 +1,4 @@
-# TodoInator
+# TaskInator
 
 > This application is a to-do list organizer, complete with user management, categories and tasks.  It is built on Node.js and Express.js, and utilizes Sequelize and Handlebars.
 
