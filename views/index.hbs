@@ -1,22 +1,30 @@
 <div class="container login-page">
     <div class="row">
         <div class="col-xs-12">
-            <p>Welcome to TaskInator, where tasks get obliviated!</p>
+            <h3 class="text-center">Welcome to TaskInator, where tasks get obliviated!</h3>
+            <br><br>
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-md-6 col-lg-5 col-centered">
-            <form>
-                <fieldset>
-                    <legend>{{title}}</legend>
-                    <label for="name">Username</label>
-                    <input type="text" name="username" id="username" placeholder="Enter your username">
-                    <br>
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Enter your password">
-                    <br>
-                    <button type="submit" name="                                  "
-                </fieldset>
+        <div class="col-xs-12 col-md-6 col-lg-5 col-centered well">
+            <form id="login-form" method="POST" action="">
+                <legend>{{title}}</legend>
+                <br>
+                <div class="form-group row">
+                    <label for="userName" class="col-xs-2 col-form-label">Username</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="userName" id="userName" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="password" class="col-xs-2 col-form-label">Password</label>
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" name="password" id="password" />
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success"> Log In </button>
             </form>
         </div>  <!-- /.col -->
     </div>  <!-- /.row -->
