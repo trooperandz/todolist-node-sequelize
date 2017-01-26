@@ -8,6 +8,7 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       session = require('express-session'),
       exphbs = require('express-handlebars'),
+      hbs = require('hbs'),
       indexRouter = require('./routes/indexRouter'),
       tasksRouter = require('./routes/tasksRouter'),
       usersRouter = require('./routes/usersRouter');
@@ -27,11 +28,12 @@ app.use(session({
 }));
 
 // Configure view engine
-app.engine('.hbs', exphbs({
+app.engine('hbs', exphbs({
     defaultLayout: 'main',
     extname: '.hbs',
     layoutsDir: path.join(__dirname, 'views/layouts'),
 }));
+hbs.registerPartials(path.join(__dirname, '/views/partials'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 

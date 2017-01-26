@@ -16,6 +16,14 @@ body, h1, h2, h3, h4, h5 {
     margin: 0 auto;
 }
 
+.well {
+    border-radius: 0;
+}
+
+.modal-content {
+    border-radius: 0;
+}
+
 legend {
     border-bottom: 1px solid #464545;
 }
