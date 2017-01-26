@@ -7,7 +7,7 @@ var http = require('http');
 var models = require('../models');
 
 // Get port from environment and store in Express.
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '5003');
 app.set('port', port);
 
 // Create HTTP server.
@@ -69,5 +69,6 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+  console.log('App is listening on ' + bind);
   debug('Listening on ' + bind);
 }

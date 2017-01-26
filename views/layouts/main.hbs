@@ -32,12 +32,30 @@
                 <div id="navbar" class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/tasks">My Tasks</a></li>
+                        <li><a href="/tasks">Tasks</a></li>
                         <li><a href="/users">Users</a></li>
                     </ul>
-                </div><!--/.nav-collapse -->
-            </div> <!-- /.container -->
+                </div>
+            </div>
         </nav> <!-- /.navbar -->
+
+        <!-- Main program alert modal -->
+        <div class="modal alert-modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"> &times;</span></button>
+                        <h4 class="modal-title">Taskinator</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.alert-modal -->
 
         {{{body}}}
 

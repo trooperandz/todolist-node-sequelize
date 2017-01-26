@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
 const Sequelize = require('sequelize'),
       models = require('../models');
 
 module.exports = {
-    getTasks: function() {
+    getTasks: () => {
         return models.Task.findAll({
             include: [
                 {
@@ -17,46 +17,54 @@ module.exports = {
                     required: true
                 }
             ]
-        })
+        });
     },
 
-    createTask: function(title, notes, completed, CategoryId, UserId) {
+    createTask: (title, notes, completed, CategoryId, UserId) => {
         return models.Task.create({
             title, notes, completed, CategoryId, UserId
-        })
+        });
     },
 
-    updateTask: function(status, id) {
+    updateTask: (status, id) => {
         return models.Task.update({
             completed: status,
         },  {
             where:{ id }
-        })
+        });
     },
 
-    deleteTask: function(id) {
+    deleteTask: (id) => {
         return models.Task.destroy({
             where: { id }
-        })
+        });
     },
 
-    getUsers: function() {
+    // Get one user. For login processing.
+    getUser: (userName) => {
+        return models.User.findOne({
+            where: { userName }
+        });
+    },
+
+    // Get all users
+    getUsers: () => {
         return models.User.findAll();
     },
 
-    createUser: function(firstName, lastName, userName, email, password) {
+    createUser: (firstName, lastName, userName, email, password) => {
         return models.User.create({
             firstName, lastName, userName, email, password
-        })
+        });
     },
 
-    deleteUser: function(id) {
+    deleteUser: (id) => {
         return models.User.destroy({
             where: { id }
-        })
+        });
     },
 
-    getCategories: function() {
-        return models.Category.findAll()
+    getCategories: () => {
+        return models.Category.findAll();
     }
 }

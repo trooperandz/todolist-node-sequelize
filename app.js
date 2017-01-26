@@ -6,15 +6,34 @@ const express = require('express'),
       logger = require('morgan'),
       cookieParser = require('cookie-parser'),
       bodyParser = require('body-parser'),
+      session = require('express-session'),
+      exphbs = require('express-handlebars'),
       indexRouter = require('./routes/indexRouter'),
       tasksRouter = require('./routes/tasksRouter'),
       usersRouter = require('./routes/usersRouter');
 
 const app = express();
 
-// View engine setup
+// Session setup
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  // Note: change to true when https is enabled
+  cookie: { secure: false },
+  // Note: change to true when user is logged in.  Used for app access rules.
+  authenticated: false,
+}));
+
+// Configure view engine
+app.engine('.hbs', exphbs({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    layoutsDir: path.join(__dirname, 'views/layouts'),
+}));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', '.hbs');
 
 // Uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

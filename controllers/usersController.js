@@ -34,6 +34,73 @@ function renderUsers(req, res, errorArr) {
 }
 
 module.exports = {
+
+    // Note: this function is not performed via AJAX
+    loginUser: (req, res) => {
+        let userName = req.body.userName;
+        let password = req.body.password;
+
+        let errors = [];
+
+        if (!userName) {
+            errors.push('Please enter a username!');
+        }
+
+        if (!password) {
+            errors.push('Please enter a password!');
+        }
+
+        if (errors.length > 0) {
+            return res.render('index', { userName, password, errors });
+        }
+
+        // Find user in db. Note: data will be null if no record is found.
+        services.getUser(userName).then((data) => {
+            if (!data) {
+                // No user found
+                errors.push('You entered an incorrect username or password!');
+                return res.render('index', {errors});
+            } else {
+                // User was found
+                let user = data.dataValues;
+
+                // Verify encrypted password
+                passwordMod.checkPassword({
+                    passwordAttempt: password,
+                    encryptedPassword: user.password,
+                }).exec({
+                    // An unexpected error occurred.
+                    error: function (err) {
+                        errors.push('We are sorry, but an unexpected error occurred. \n Please see the administrator.');
+                        return res.render('index', { userName, password, errors });
+                    },
+                    // Password attempt does not match already-encrypted version
+                    incorrect: function () {
+                        errors.push('You entered an incorrect username or password! Please try again.');
+                        return res.render('index', { userName, password, errors });
+                    },
+                    // Password verified. Set session vars for user and proceed to main tasks page
+                    success: function () {
+                        req.session.authenticated = true;
+                        req.session.firstName = user.firstName;
+                        req.session.lastName = user.lastName;
+                        req.session.userName = userName; // Already entered at login
+                        req.session.userEmail = user.email;
+                        // Test session vars
+                        console.log(`Session vars: firstName: ${user.firstName} lastName: ${user.lastName} userName: ${user.userName} Email: ${user.email}`);
+
+                        // Redirect to main tasks page
+                        return res.redirect('/tasks');
+                    },
+                });
+            }
+        });
+    },
+
+    logoutUser: (req, res) => {
+
+    },
+
     getUsers: (req, res) => {
         return renderUsers(req, res);
     },

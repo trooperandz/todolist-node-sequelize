@@ -1,4 +1,5 @@
 <div class="container login-page">
+    <br><br>
     <div class="row">
         <div class="col-xs-12">
             <br>
@@ -8,26 +9,35 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-12 col-md-6 col-lg-5 col-centered well">
-            <form id="login-form" method="POST" action="">
-                <legend>{{title}}</legend>
+        <div class="col-xs-12 col-md-7 col-lg-7 col-centered well">
+            <form id="login-form" method="POST" action="/users/login">
+                <legend>Taskinator Login</legend>
+
+            {{!-- Show login errors --}}
+            {{#if errors}}
+              {{#each errors}}
+                <p class="red">{{this}}</p>
+              {{/each}}
+            {{else}}
                 <br>
-                <div class="form-group row">
+            {{/if}}
+
+                <div class="form-group input-margin row">
                     <label for="userName" class="col-xs-2 col-form-label">Username</label>
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" name="userName" id="userName" />
+                        <input type="text" class="form-control" name="userName" id="userName" value="{{userName}}" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="password" class="col-xs-2 col-form-label">Password</label>
                     <div class="col-xs-10">
-                        <input type="text" class="form-control" name="password" id="password" />
+                        <input type="password" class="form-control" name="password" id="password" value="{{password}}" />
                     </div>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success"> Log In </button>
             </form>
-        </div>  <!-- /.col -->
-    </div>  <!-- /.row -->
+        </div>
+    </div>
 </div> <!-- /.container -->

@@ -1,10 +1,9 @@
 'use strict';
 
 const express = require('express'),
+      indexController = require('../controllers/indexController'),
       router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('index', { title: 'Taskinator Login' });
-});
+router.get('/', indexController.renderIndexPage);
 
 module.exports = router;

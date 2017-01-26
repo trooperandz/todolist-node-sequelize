@@ -20,8 +20,33 @@ legend {
     border-bottom: 1px solid #464545;
 }
 
+.btn {
+    border-radius: 0;
+}
+
 .text-blue {
     color: #008cba;
+}
+
+.form-control {
+    /* Note: TODO - this does not work for select elements */
+    border-radius: 0;
+    color: #ccc;
+}
+
+#login-form .form-control {
+    background: none;
+    border: 1px solid #ccc;
+}
+
+.input-margin {
+    margin-bottom: 27px;
+}
+
+#login-form input[type="text"] {
+    /* border-radius: 0;
+    background: none;
+    border: 1px solid #ccc;*/
 }
 
 .table thead tr th {

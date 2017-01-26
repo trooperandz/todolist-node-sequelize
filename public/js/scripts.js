@@ -1,13 +1,12 @@
-"use strict";
+'use strict';
 
 $(document).ready(function() {
-    // Check out requirejs
     // Global regex patterns
     const validName = /^[A-Za-z]+$/,
           validNumber = /^[0-9]+$/,
           validEmail = /(^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$)|(^N\/A$)/,
           validPass = /^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/,
-          timeDelay = 1900,
+          timeDelay = 1200,
           pendTableId = 'tasks-pending',
           compTableId = 'tasks-completed';
 
@@ -15,7 +14,6 @@ $(document).ready(function() {
     initDataTables();
 
     // Task table icon click handler
-    //$('table.task a').on('click', function(e) {
     $('table.task').on('click', 'a', function(e) {
         e.preventDefault();
 
@@ -67,6 +65,13 @@ $(document).ready(function() {
                     }, timeDelay);
                 })
                 break;
+
+            case 'edit':
+                // Take no action until code instructions are complete
+                showAlertModal('This action is coming soon!');
+                return false;
+                break;
+
             case 'reactivate':
                 $.ajax({
                     type: 'POST',
@@ -92,6 +97,7 @@ $(document).ready(function() {
                     }, timeDelay);
                 })
                 break;
+
             case 'delete':
                 $.ajax({
                     type: 'POST',
@@ -110,7 +116,7 @@ $(document).ready(function() {
                 })
                 break;
         }
-    })
+    });
 
     // User table icon click handler
     $('table.user a').on('click', function(e) {
@@ -132,6 +138,11 @@ $(document).ready(function() {
 
         switch(action) {
             case 'update':
+                // Take no action until code instructions are complete
+                showAlertModal('This action is coming soon!');
+                return false;
+                break;
+                /* Use this code when complete user edit action
                 $.ajax({
                     type: 'POST',
                     url: '/users/create',
@@ -146,7 +157,7 @@ $(document).ready(function() {
                             notify('New user added successfully!', 'success');
                         }
                     }, timeDelay);
-                })
+                })*/
                 break;
             case 'delete':
                 $.ajax({
@@ -245,6 +256,13 @@ $(document).ready(function() {
             }, timeDelay);
         });
     });
+
+    // Activate alert modal
+    function showAlertModal(msg) {
+        // Fill in message and show the modal
+        $('.alert-modal p').text(msg);
+        $('.alert-modal').modal('show');
+    }
 
     // Show form errors if any occurred
     function checkErrors(errorArr) {
