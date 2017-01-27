@@ -237,7 +237,7 @@ $(document).ready(function() {
                 if(response == 'success') {
                     // Add new user to the user table
                     $('table.user').DataTable().row.add([
-                        '<a href="/edit"><i class="glyphicon glyphicon-pencil text-muted" name="create" data-toggle="tooltip data-placement="bottom" title="Edit User"></i></a> &nbsp;<a href="/remove"><i class="glyphicon glyphicon-remove text-danger" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User"></i></a>',
+                        '<a href="/edit"><i class="glyphicon glyphicon-pencil" name="create" data-toggle="tooltip data-placement="bottom" title="Edit User"></i></a> &nbsp;<a href="/remove"><i class="glyphicon glyphicon-remove" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User"></i></a>',
                         firstName,
                         lastName,
                         userName,

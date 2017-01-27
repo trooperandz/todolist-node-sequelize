@@ -1,10 +1,17 @@
 body {
+    background-color: #303030;
     padding-top: 50px;
     color: #ccc;
 }
 
 body, h1, h2, h3, h4, h5 {
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
+    font-family: 'Quicksand', sans-serif;
+}
+
+.navbar-default {
+    background-color: #303030;
+    /*background-color: #4b6a8b;*/
 }
 
 .navbar-inverse .navbar-brand {
@@ -25,6 +32,7 @@ body, h1, h2, h3, h4, h5 {
 }
 
 legend {
+    color: #A19E82;
     border-bottom: 1px solid #464545;
 }
 
@@ -32,19 +40,70 @@ legend {
     border-radius: 0;
 }
 
+.btn-success {
+    color: gray;
+    background-color: #2dd5c2;
+    border-color: transparent;
+    transition: .4s;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active {
+    color: gray;
+    background-color: #24aa9b;
+    border-color: transparent;
+}
+
+/* Tabs overrides */
+.nav-tabs>li>a, .nav-pills>li>a {
+    color: gray;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    color: #2DD5C2;
+    background-color: #444444;
+}
+
+/* Datatables overrides */
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    color: gray;
+    background-color: #2dd5c2;
+}
+
+.pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus {
+    color: gray;
+    background-color: #24aa9b;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+    border-radius: 0;
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+    border-radius: 0;
+}
+
+/* Tables styling */
+table .glyphicon {
+    color: gray;
+    font-size: 12px;
+}
+
 .text-blue {
-    color: #008cba;
+    /*color: #008cba;*/
+    color: #A19E82;
 }
 
 .form-control {
     /* Note: TODO - this does not work for select elements */
     border-radius: 0;
     color: #ccc;
+    border: 1px solid #7d7c7c;
+    background: none;
 }
 
 #login-form .form-control {
     background: none;
-    border: 1px solid #ccc;
+    border: 1px solid #7d7c7c;
 }
 
 .input-margin {
@@ -58,7 +117,7 @@ legend {
 }
 
 .table thead tr th {
-    border-bottom: 2px solid #375a7f;
+    /*border-bottom: 2px solid #375a7f;*/
 }
 
 .table tbody tr td {

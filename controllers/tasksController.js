@@ -87,9 +87,9 @@ function buildTable (array, completedStatus, tableId, dateColTitle, updateRoute,
  */
 function getTableAnchors(obj) {
     let html = `
-        <a href="/tasks/${obj.updateRoute}/${obj.id}" data-id="${obj.id}"><i class="glyphicon ${obj.glyphClass} text-success"  name="${obj.updateName}" data-toggle="tooltip" data-placement="bottom" title="${obj.tooltipTitle}"></i></a> &nbsp;
-        <a href="/tasks/edit/${obj.id}" data-id="${obj.id}"><i class="glyphicon glyphicon-pencil  text-muted"name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
-        <a href="/tasks/delete/${obj.id}" data-id="${obj.id}"><i class="glyphicon glyphicon-remove  text-danger"name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>`;
+        <a href="/tasks/${obj.updateRoute}/${obj.id}" data-id="${obj.id}"><i class="glyphicon ${obj.glyphClass}"  name="${obj.updateName}" data-toggle="tooltip" data-placement="bottom" title="${obj.tooltipTitle}"></i></a> &nbsp;
+        <a href="/tasks/edit/${obj.id}" data-id="${obj.id}"><i class="glyphicon glyphicon-pencil" name="edit" data-toggle="tooltip" data-placement="bottom" title="Edit Task"></i></a> &nbsp;
+        <a href="/tasks/delete/${obj.id}" data-id="${obj.id}"><i class="glyphicon glyphicon-remove" name="delete" data-toggle="tooltip" data-placement="bottom" title="Delete Task"></i></a>`;
     console.log('table html: ' + html);
     return html;
 }

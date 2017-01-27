@@ -12,9 +12,8 @@
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="task-list-pending">
-                    <br>
+
                     <div class="well">
-                        <legend> Pending Tasks </legend>
                         <div class="table-responsive">
                             {{{pendingTable}}}
                         </div>
@@ -22,9 +21,8 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="task-list-completed">
-                    <br>
+
                     <div class="well">
-                        <legend> Completed Tasks </legend>
                         <div class="table-responsive">
                             {{{completedTable}}}
                         </div>
@@ -34,7 +32,6 @@
                 <div role="tabpanel" class="tab-pane fade" id="add-task">
                     <br>
                     <div class="well">
-                        <legend> Add New Task </legend>
                         <form method="POST" action="/tasks/addTask">
                             <div class="form-group row">
                                 <label for="title" class="col-xs-2 col-form-label">Task</label>

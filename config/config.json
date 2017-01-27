@@ -14,7 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
+    "username": "matt",
     "password": "Trooper2#",
     "database": "todo_sequelize",
     "host": "127.0.0.1",

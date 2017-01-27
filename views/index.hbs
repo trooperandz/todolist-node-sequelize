@@ -3,37 +3,29 @@
     <div class="row">
         <div class="col-xs-12">
             <br>
-            <h3 class="text-center">Welcome to TaskInator, where tasks get obliviated!</h3>
-            <br>
+            <h3 class="text-center"></h3>
             <br>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-7 col-lg-7 col-centered well">
             <form id="login-form" method="POST" action="/users/login">
-                <legend>Taskinator Login</legend>
+                <legend>Login</legend>
 
-            {{!-- Show login errors --}}
-            {{#if errors}}
-              {{#each errors}}
-                <p class="red">{{this}}</p>
-              {{/each}}
-            {{else}}
-                <br>
-            {{/if}}
+                {{!-- Show login errors --}}
+                {{#if errors}}
+                  {{#each errors}}
+                    <p class="red">{{this}}</p>
+                  {{/each}}
+                {{/if}}
 
-                <div class="form-group input-margin row">
-                    <label for="userName" class="col-xs-2 col-form-label">Username</label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" name="userName" id="userName" value="{{userName}}" />
-                    </div>
+                <div class="form-group">
+                    <label for="userName">Username</label>
+                    <input type="text" class="form-control" name="userName" id="userName" value="{{userName}}" />
                 </div>
-
-                <div class="form-group row">
-                    <label for="password" class="col-xs-2 col-form-label">Password</label>
-                    <div class="col-xs-10">
-                        <input type="password" class="form-control" name="password" id="password" value="{{password}}" />
-                    </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" value="{{password}}" />
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success"> Log In </button>
