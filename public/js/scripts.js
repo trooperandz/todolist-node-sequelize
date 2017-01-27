@@ -69,6 +69,7 @@ $(document).ready(function() {
             case 'edit':
                 // Take no action until code instructions are complete
                 showAlertModal('This action is coming soon!');
+                removeSpinner();
                 return false;
                 break;
 
@@ -140,6 +141,7 @@ $(document).ready(function() {
             case 'update':
                 // Take no action until code instructions are complete
                 showAlertModal('This action is coming soon!');
+                removeSpinner();
                 return false;
                 break;
                 /* Use this code when complete user edit action
@@ -177,6 +179,76 @@ $(document).ready(function() {
                 });
                 break;
         }
+    });
+
+    // Task form submit handler
+    $('#task-form button').on('click', function(e) {
+        e.preventDefault();
+
+        // Grab inputs
+        let title = $('#title').val();
+        let notes = $('#notes').val();
+        let completed = 0;
+        let name = $('#UserId option:selected').text();
+        let UserId = $('#UserId option:selected').val();
+        let category = $('#CategoryId option:selected').text();
+        let CategoryId = $('#CategoryId option:selected').val();
+
+        // Save inputs for use in task table append action
+        let createdAt = moment().format('MM/DD/YYYY');
+
+        // Validate inputs
+        let errorArr = [];
+
+        if (title == '') {
+            errorArr.push('You entered an invalid task description. \n');
+        }
+        if (UserId == '') {
+             errorArr.push('You must select a user. \n');
+        }
+        if (!CategoryId) {
+             errorArr.push('You must select a category.');
+        }
+
+        if(checkErrors(errorArr)) {
+            return false;
+        }
+
+        let formData = $('#task-form').serialize();
+
+        initializeSpinner();
+
+        $.ajax({
+            type: 'POST',
+            url: '/tasks/addTask',
+            data: formData
+        }).done(response => {
+            setTimeout(() => {
+                removeSpinner();
+                if(response) {
+                    // Add new task to the task table
+                    $('#'+pendTableId).DataTable().row.add([
+                        response,
+                        name,
+                        title,
+                        notes,
+                        category,
+                        createdAt,
+                    ]).draw();
+
+                    // Simulate user click event on Users tab, to display updated User table
+                    //$('ul.nav-tabs').children()
+
+                    // Clear form inputs
+                    $('#task-form input').val('');
+                    $("#task-form select").val('');
+                    $('form').notify('The task was added successfully!', 'success', 'right');
+                    // notify('thead', 'User was added successfully!', 'success', 'right');
+                } else {
+                    $.notify('There was an internal server error!', 'error', 'right');
+                }
+            }, timeDelay);
+        });
     });
 
     // User form submit handler
@@ -250,8 +322,8 @@ $(document).ready(function() {
 
                     // Clear form inputs
                     $('#user-form input').val('');
-
-                    notify('User was added successfully!', 'success', 'right');
+                    $('form').notify(firstName + ' was added successfully!', 'success', 'right');
+                    // notify('thead', 'User was added successfully!', 'success', 'right');
                 }
             }, timeDelay);
         });
@@ -271,8 +343,10 @@ $(document).ready(function() {
             errorArr.forEach(function (error) {
                 msg += error;
             });
+            console.log('msg: ' + msg);
             // Show error notification
-            notify('', msg, 'error', 'right');
+            $.notify(msg, 'error', 'right');
+            // notify('', msg, 'error', 'right');
             return true;
         } else {
             return false;

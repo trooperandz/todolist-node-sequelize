@@ -1,6 +1,12 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     background-color: #303030;
     padding-top: 50px;
+    margin-bottom: 50px;
     color: #ccc;
 }
 
@@ -11,11 +17,41 @@ body, h1, h2, h3, h4, h5 {
 
 .navbar-default {
     background-color: #303030;
-    /*background-color: #4b6a8b;*/
+}
+
+.navbar-default .navbar-brand {
+    color: #ccc;
+    transition: .4s;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #A19E82;
 }
 
 .navbar-inverse .navbar-brand {
-    color: #008cba;
+    color: #2dd5c2;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ccc;
+    transition: .4s;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #A19E82;
+}
+
+/* Styling for mobile hamburger menu */
+.navbar-collapse.in {
+    background: #444444;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: gray;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #2dd5c2;
 }
 
 .col-centered {
@@ -36,6 +72,14 @@ legend {
     border-bottom: 1px solid #464545;
 }
 
+a:focus {
+    outline: none;
+}
+
+.error {
+    color: #2dd5c2;
+}
+
 .btn {
     border-radius: 0;
 }
@@ -51,11 +95,26 @@ legend {
     color: gray;
     background-color: #24aa9b;
     border-color: transparent;
+    outline: none;
 }
 
-/* Tabs overrides */
+.btn-success:active:hover, .btn-success.active:hover, .open>.dropdown-toggle.btn-success:hover, .btn-success:active:focus, .btn-success.active:focus, .open>.dropdown-toggle.btn-success:focus, .btn-success:active.focus, .btn-success.active.focus, .open>.dropdown-toggle.btn-success.focus {
+    color: gray;
+    background-color: #2dd5c2;
+    border-color: transparent;
+}
+
+/* Tabs styles & overrides */
 .nav-tabs>li>a, .nav-pills>li>a {
     color: gray;
+}
+
+.tab-content form button {
+    margin-top: 12px;
+}
+
+.nav-tabs>li>a {
+    border-radius: 1px 1px 0 0;
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
@@ -64,7 +123,7 @@ legend {
 }
 
 /* Datatables overrides */
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+.pagination>li>a, .pagination>li>span, .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
     color: gray;
     background-color: #2dd5c2;
 }
@@ -83,6 +142,10 @@ legend {
 }
 
 /* Tables styling */
+table  {
+    white-space: nowrap;
+}
+
 table .glyphicon {
     color: gray;
     font-size: 12px;
@@ -137,4 +200,35 @@ table th, table td {
 
 .red {
     color: red;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here, must equal margin-bottom of body */
+    height: 50px;
+    /* Set to match the main theme */
+    background-color: #303030;
+    border-color: #121212;
+    color: #A19E82;
+}
+
+.footer p {
+    margin: 14.5px 0;
+}
+
+/* Media queries */
+/* Small devices */
+@media (max-width: 768px) {
+    /* Table records display length <select> */
+    #tasks-pending_length, #tasks-completed_length, #users-table_length {
+        display: none;
+    }
+
+    /* Table search input */
+    #tasks-pending_filter, #tasks-completed_filter, #users-table_filter  {
+        margin-top: 5px;
+        text-align: left;
+    }
 }

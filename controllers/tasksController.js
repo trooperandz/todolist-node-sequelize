@@ -119,7 +119,16 @@ module.exports = {
         let UserId = req.body.UserId;
 
         services.createTask(title, notes, completed, CategoryId, UserId).then(data => {
-            res.redirect('/tasks');
+            let id = data.dataValues.id;
+            let html = getTableAnchors({
+                updateRoute:'update',
+                id:id,
+                glyphClass:'glyphicon-ok',
+                updateName:'completed',
+                tooltipTitle:'Mark Completed',
+            });
+            res.send(html);
+            // res.redirect('/tasks');
         });
     },
 

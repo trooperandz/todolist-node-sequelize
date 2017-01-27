@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Personal organizer application.">
+        <meta name="author" content="MTH">
         <title>{{title}}</title>
 
         <link rel="stylesheet" href="https://cdn.datatables.net/v/bs-3.3.6/dt-1.10.12/datatables.min.css" />
@@ -17,11 +22,14 @@
         <!-- Spinner container -->
         <div class="spinner-div"></div>
 
+        {{!-- Partials --}}
         {{> navbar}}
 
         {{> alertModal}}
 
         {{{body}}}
+
+        {{> footer}}
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
