@@ -2,34 +2,26 @@
 1 verbose cli [ '/usr/local/bin/node',
 1 verbose cli   '/usr/local/bin/npm',
 1 verbose cli   'run-script',
-1 verbose cli   'start-test' ]
+1 verbose cli   'start-testclear' ]
 2 info using npm@3.10.8
 3 info using node@v7.0.0
-4 verbose stack Error: Failed to parse json
-4 verbose stack Unexpected token 's' at 7:6
-4 verbose stack     "start-dev": "NODE_ENV=development node ./bin/www",
-4 verbose stack      ^
-4 verbose stack     at parseError (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:390:11)
-4 verbose stack     at parseJson (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:79:23)
-4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:48:5
+4 verbose stack Error: missing script: start-testclear
+4 verbose stack     at run (/usr/local/lib/node_modules/npm/lib/run-script.js:151:19)
+4 verbose stack     at /usr/local/lib/node_modules/npm/lib/run-script.js:61:5
+4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:356:5
+4 verbose stack     at checkBinReferences_ (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:320:45)
+4 verbose stack     at final (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:354:3)
+4 verbose stack     at then (/usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:124:5)
+4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-package-json/read-json.js:311:12
 4 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:78:16
 4 verbose stack     at tryToString (fs.js:425:3)
 4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:412:12)
 5 verbose cwd /Users/Yo/Desktop/Bootcamp/homework/todolist-node-sequelize
 6 error Darwin 15.5.0
-7 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run-script" "start-test"
+7 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "run-script" "start-testclear"
 8 error node v7.0.0
 9 error npm  v3.10.8
-10 error file /Users/Yo/Desktop/Bootcamp/homework/todolist-node-sequelize/package.json
-11 error code EJSONPARSE
-12 error Failed to parse json
-12 error Unexpected token 's' at 7:6
-12 error     "start-dev": "NODE_ENV=development node ./bin/www",
-12 error      ^
-13 error File: /Users/Yo/Desktop/Bootcamp/homework/todolist-node-sequelize/package.json
-14 error Failed to parse package.json data.
-14 error package.json must be actual JSON, not just JavaScript.
-14 error
-14 error This is not a bug in npm.
-14 error Tell the package author to fix their package.json file. JSON.parse
-15 verbose exit [ 1, true ]
+10 error missing script: start-testclear
+11 error If you need help, you may report this error at:
+11 error     <https://github.com/npm/npm/issues>
+12 verbose exit [ 1, true ]
