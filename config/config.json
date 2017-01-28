@@ -9,14 +9,14 @@
   "test": {
     "username": "root",
     "password": "Trooper2#",
-    "database": "todo_sequelize",
+    "database": "todo_sequelize_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "matt",
-    "password": "Trooper2#",
-    "database": "todo_sequelize",
+    "password": "password",
+    "database": "todo_sequelize_prod",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
