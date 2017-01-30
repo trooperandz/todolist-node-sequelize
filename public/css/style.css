@@ -4,7 +4,8 @@ html {
 }
 
 body {
-    background-color: #303030;
+    /*background-color: #303030;*/
+    background-color: #262626;
     padding-top: 50px;
     margin-bottom: 50px;
     color: #ccc;
@@ -16,7 +17,8 @@ body, h1, h2, h3, h4, h5 {
 }
 
 .navbar-default {
-    background-color: #303030;
+    background-color: #2b2b2b;
+    /*background-color: #303030;*/
 }
 
 .navbar-default .navbar-brand {
@@ -209,7 +211,8 @@ table th, table td {
     /* Set the fixed height of the footer here, must equal margin-bottom of body */
     height: 50px;
     /* Set to match the main theme */
-    background-color: #303030;
+    background-color: #2b2b2b;
+    /*background-color: #303030;*/
     border-color: #121212;
     color: #A19E82;
 }
