@@ -1,17 +1,17 @@
 'use strict';
 
-const express = require('express'),
-      path = require('path'),
-      favicon = require('serve-favicon'),
-      logger = require('morgan'),
-      cookieParser = require('cookie-parser'),
-      bodyParser = require('body-parser'),
-      session = require('express-session'),
-      exphbs = require('express-handlebars'),
-      hbs = require('hbs'),
-      indexRouter = require('./routes/indexRouter'),
-      tasksRouter = require('./routes/tasksRouter'),
-      usersRouter = require('./routes/usersRouter');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const hbs = require('hbs');
+const indexRouter = require('./routes/indexRouter');
+const tasksRouter = require('./routes/tasksRouter');
+const usersRouter = require('./routes/usersRouter');
 
 const app = express();
 

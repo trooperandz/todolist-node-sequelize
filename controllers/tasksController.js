@@ -1,9 +1,9 @@
 'use strict';
 
-const Sequelize = require('sequelize'),
-      models = require('../models'),
-      services = require('../services/services'),
-      moment = require('moment');
+const Sequelize = require('sequelize');
+const models = require('../models');
+const services = require('../services/services');
+const moment = require('moment');
 
 // look at ecma6 Sets & Maps, Rest & Spread operators, for....of loops, Object extensions
 
@@ -96,6 +96,8 @@ function getTableAnchors(obj) {
 
 module.exports = {
     getTasks: (req, res, id) => {
+        req.session.hasLoadedApp = true;
+
         Promise.all([
             services.getTasks(),
             services.getUsers(),

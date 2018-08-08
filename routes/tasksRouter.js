@@ -1,13 +1,20 @@
 'use strict';
 
-const express = require('express'),
-      router = express.Router(),
-      tasksController = require('../controllers/tasksController');
+const express = require('express');
+const router = express.Router();
 
-router.get('/', tasksController.getTasks);
-router.post('/addTask', tasksController.addTask);
-router.post('/update', tasksController.updateTask);
-router.post('/reactivate', tasksController.reactivateTask);
-router.post('/delete', tasksController.deleteTask);
+const {
+  getTasks,
+  addTask,
+  updateTask,
+  reactivateTask,
+  deleteTask,
+} = require('../controllers/tasksController');
+
+router.get('/', getTasks);
+router.post('/addTask', addTask);
+router.post('/update', updateTask);
+router.post('/reactivate', reactivateTask);
+router.post('/delete', deleteTask);
 
 module.exports = router;

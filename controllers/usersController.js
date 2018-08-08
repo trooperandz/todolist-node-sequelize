@@ -1,11 +1,12 @@
 "use strict";
 
-const models = require('../models'),
-      moment = require('moment'),
-      services = require('../services/services'),
-      passwordMod = require('machinepack-passwords'),
-      validEmail = /(^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$)|(^N\/A$)/,
-      validPass = /^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/;
+const models = require('../models');
+const moment = require('moment');
+const services = require('../services/services');
+const passwordMod = require('machinepack-passwords');
+
+const validEmail = /(^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$)|(^N\/A$)/;
+const validPass = /^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,}$/;
 
 /**
  * Format the date from the db
@@ -102,6 +103,7 @@ module.exports = {
     },
 
     getUsers: (req, res) => {
+        req.session.hasLoadedApp = true;
         return renderUsers(req, res);
     },
 
